@@ -26,18 +26,31 @@ export default function Home() {
         <DemoBadge label={t.common.demoBadge} />
       </div>
 
-      <section className="relative min-h-[420px] overflow-hidden rounded-[var(--radius-lg)] sm:min-h-[460px]">
+      <section className="relative h-[420px] overflow-hidden rounded-[var(--radius-lg)] sm:h-auto sm:aspect-[1672/941]">
+        {/* Mobile : cadrage portrait dédié, recadré sur une hauteur d'écran raisonnable */}
         <Image
           src="/images/hero-home-base.png"
           alt=""
           fill
           priority
-          sizes="100vw"
-          className="object-cover object-[70%_100%] sm:object-[78%_82%]"
+          sizes="(min-width: 640px) 0px, 100vw"
+          className="object-cover object-[65%_100%] sm:hidden"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] from-45% via-[var(--color-surface)]/90 to-transparent sm:bg-gradient-to-r sm:from-[var(--color-surface)] sm:from-35% sm:via-[var(--color-surface)]/75 sm:to-transparent rtl:sm:bg-gradient-to-l" />
-        <div className="relative flex min-h-[420px] flex-col justify-end px-5 py-10 text-center sm:min-h-[460px] sm:justify-center sm:px-10 sm:py-16 sm:text-start">
-          <h1 className="text-2xl font-bold leading-tight text-[var(--color-text)] sm:max-w-md sm:text-4xl">
+        {/* Desktop/tablette : cadrage large fourni par le propriétaire (référence) */}
+        <Image
+          src="/images/hero-home-branded.png"
+          alt=""
+          fill
+          priority
+          sizes="(min-width: 640px) 100vw, 0px"
+          className="hidden object-cover sm:block"
+        />
+        <div className="relative flex h-full flex-col justify-end px-5 py-8 text-center [text-shadow:0_1px_16px_rgba(255,253,254,0.75)] sm:justify-center sm:px-10 sm:py-14 sm:text-start">
+          <p className="mx-auto text-2xl font-extrabold tracking-tight sm:mx-0 sm:text-4xl">
+            <span className="text-[var(--color-primary)]">Koun</span>
+            <span className="text-[var(--color-accent)]">Kour</span>
+          </p>
+          <h1 className="mt-1 text-2xl font-bold leading-tight text-[var(--color-text)] sm:max-w-md sm:text-4xl">
             {headingParts.map((part, i) => (
               <span key={i}>
                 {part}
@@ -53,7 +66,7 @@ export default function Home() {
 
           <form
             role="search"
-            className="mx-auto mt-5 flex w-full max-w-lg items-center gap-2 rounded-full bg-[var(--color-surface)] py-2 ps-5 pe-2 shadow-md sm:mx-0"
+            className="mx-auto mt-5 flex w-full max-w-lg items-center gap-2 rounded-full bg-[var(--color-surface)] py-2 ps-5 pe-2 shadow-lg sm:mx-0"
           >
             <svg aria-hidden viewBox="0 0 20 20" fill="none" className="h-4 w-4 shrink-0 text-[var(--color-text-muted)]">
               <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.6" />
