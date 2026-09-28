@@ -35,9 +35,11 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero plein cadre : image en arrière-plan véritable sur mobile (pas de
-          section encadrée/marge blanche), contenue dans une carte à partir de sm:. */}
-      <section className="relative h-[620px] w-full overflow-hidden sm:mx-auto sm:h-auto sm:max-w-6xl sm:rounded-[var(--radius-lg)] sm:aspect-[1672/941]">
+      {/* Hero plein cadre, sans marge ni coin arrondi à aucune taille d'écran :
+          l'en-tête (fixed + transparent sur cette page, voir Header) flotte
+          par-dessus au lieu de réserver sa bande blanche, et un dégradé en
+          bas fond l'image dans le fond de page pour un rendu continu. */}
+      <section className="relative h-[620px] w-full overflow-hidden sm:h-auto sm:aspect-[1672/941]">
         {/* Mobile : cadrage portrait dédié */}
         <Image
           src="/images/hero-home-base.png"
@@ -57,7 +59,10 @@ export default function Home() {
           className="hidden object-cover sm:block"
         />
 
-        <div className="absolute end-4 top-4 z-10 rounded-full bg-[var(--color-surface)]/90 p-0.5 shadow-sm sm:end-6 sm:top-6">
+        {/* Fondu progressif vers le fond de page en bas du hero */}
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-[var(--color-background)] sm:h-40" />
+
+        <div className="absolute end-4 top-16 z-10 rounded-full bg-[var(--color-surface)]/90 p-0.5 shadow-sm sm:end-6 sm:top-20">
           <DemoBadge label={t.common.demoBadge} />
         </div>
 
