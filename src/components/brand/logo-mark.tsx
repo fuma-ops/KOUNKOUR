@@ -2,33 +2,31 @@
 // surmonté de l'étoile verte marocaine (accents "vert marocain avec
 // modération", cahier des charges §4).
 // `LogoMark` : version badge circulaire (en-tête, favicon, petits contextes).
-// `LogoMarkNoBadge` : version détourée (icône seule, contours blancs pour
-// rester lisible sur la photo), utilisée en grand format sur l'écran de
-// démarrage.
+// `LogoMarkNoBadge` : version claire (toque blanche), pour l'écran de
+// démarrage à fond bordeaux plein.
 
 const CAP_COLOR = "#241019";
 const ACCENT = "#C73578";
 const STAR_GREEN = "#1F8A5F";
 const PAPER = "#FFFDFE";
 
-function LogoGlyph({ stroked = false }: { stroked?: boolean }) {
-  const bookStroke = stroked ? { stroke: "#8D174B", strokeWidth: 2.5, strokeLinejoin: "round" as const } : {};
-  const bandStroke = stroked ? { stroke: "#8D174B", strokeWidth: 1.6, strokeLinejoin: "round" as const } : {};
-  const capStroke = stroked ? { stroke: PAPER, strokeWidth: 1.5, strokeLinejoin: "round" as const } : {};
+function LogoGlyph({ light = false }: { light?: boolean }) {
+  const capFill = light ? PAPER : CAP_COLOR;
+  const capOutline = light ? { stroke: CAP_COLOR, strokeWidth: 1.6, strokeLinejoin: "round" as const } : {};
 
   return (
     <>
       {/* livre ouvert */}
-      <path d="M50 84 C 36 76 24 62 28 44 C 38 54 46 68 50 84 Z" fill={PAPER} {...bookStroke} />
-      <path d="M50 84 C 64 76 76 62 72 44 C 62 54 54 68 50 84 Z" fill={PAPER} {...bookStroke} />
-      {!stroked && <line x1="50" y1="82" x2="50" y2="48" stroke="#8D174B" strokeWidth="1.2" opacity="0.35" />}
+      <path d="M50 84 C 36 76 24 62 28 44 C 38 54 46 68 50 84 Z" fill={PAPER} />
+      <path d="M50 84 C 64 76 76 62 72 44 C 62 54 54 68 50 84 Z" fill={PAPER} />
+      <line x1="50" y1="82" x2="50" y2="48" stroke="#8D174B" strokeWidth="1.2" opacity="0.35" />
       {/* ruban / marque-page */}
       <path d="M47 83 L53 83 L53 94 L50 90 L47 94 Z" fill={ACCENT} />
       {/* bande de la toque */}
-      <path d="M41 37 L59 37 L55.5 51 L44.5 51 Z" fill={PAPER} {...bandStroke} />
+      <path d="M41 37 L59 37 L55.5 51 L44.5 51 Z" fill={PAPER} />
       {/* toque de graduation */}
-      <path d="M50 28 L74 38 L50 48 L26 38 Z" fill={CAP_COLOR} {...capStroke} />
-      <circle cx="50" cy="37.5" r="2.2" fill={CAP_COLOR} />
+      <path d="M50 28 L74 38 L50 48 L26 38 Z" fill={capFill} {...capOutline} />
+      <circle cx="50" cy="37.5" r="2.2" fill={capFill} {...capOutline} />
       <path d="M51 38 C 59 40 63 45 64 51" fill="none" stroke={ACCENT} strokeWidth="1.8" strokeLinecap="round" />
       <ellipse cx="64.5" cy="53.5" rx="2.6" ry="4" fill={ACCENT} transform="rotate(15 64.5 53.5)" />
       {/* étoile marocaine */}
@@ -57,13 +55,12 @@ export function LogoMark({ size = 96, className = "" }: { size?: number; classNa
   );
 }
 
-// Version détourée (icône seule), utilisée en grand format sur l'écran de
-// démarrage : livre au contour bordeaux, toque au contour blanc, pour rester
-// lisible directement sur la photo de fond.
+// Version claire (toque blanche à liseré fin), utilisée en grand format sur
+// l'écran de démarrage à fond bordeaux plein.
 export function LogoMarkNoBadge({ size = 120, className = "" }: { size?: number; className?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" className={className} role="img" aria-label="KounKour">
-      <LogoGlyph stroked />
+      <LogoGlyph light />
     </svg>
   );
 }
