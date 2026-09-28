@@ -66,12 +66,12 @@ export default function Home() {
           <DemoBadge label={t.common.demoBadge} />
         </div>
 
-        <div className="relative flex h-full flex-col justify-end px-5 pb-8 pt-24 text-center [text-shadow:0_1px_18px_rgba(255,253,254,0.85)] sm:justify-center sm:ps-28 sm:pe-10 sm:py-14 sm:text-start">
+        <div className="relative flex h-full flex-col justify-end px-5 pb-8 pt-24 text-center [text-shadow:0_1px_18px_rgba(255,253,254,0.85)] sm:justify-center sm:ps-[20%] sm:pe-10 sm:py-14 sm:text-start">
           <p className="mx-auto text-2xl font-extrabold tracking-tight sm:mx-0 sm:text-4xl">
             <span className="text-[var(--color-primary)]">Koun</span>
             <span className="text-[var(--color-accent)]">Kour</span>
           </p>
-          <h1 className="mt-1 text-2xl font-bold leading-tight text-[var(--color-text)] sm:max-w-md sm:text-4xl">
+          <h1 className="mt-1 text-2xl font-bold leading-tight text-[var(--color-text)] sm:max-w-lg sm:text-4xl">
             {headingParts.map((part, i) => (
               <span key={i}>
                 {part}
@@ -81,13 +81,13 @@ export default function Home() {
               </span>
             ))}
           </h1>
-          <p className="mx-auto mt-3 max-w-xl text-sm text-[var(--color-text)] sm:mx-0 sm:max-w-sm">
+          <p className="mx-auto mt-3 max-w-xl text-sm text-[var(--color-text)] sm:mx-0 sm:max-w-md">
             {t.home.subheading}
           </p>
 
           <form
             role="search"
-            className="mx-auto mt-5 flex w-full max-w-lg items-center gap-2 rounded-full bg-[var(--color-surface)] py-2 ps-5 pe-2 shadow-lg sm:mx-0"
+            className="mx-auto mt-5 flex w-full max-w-lg items-center gap-2 rounded-full bg-[var(--color-surface)] py-2 ps-5 pe-2 shadow-lg sm:mx-0 sm:max-w-2xl"
           >
             <svg aria-hidden viewBox="0 0 20 20" fill="none" className="h-4 w-4 shrink-0 text-[var(--color-text-muted)]">
               <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.6" />
@@ -114,7 +114,7 @@ export default function Home() {
           </form>
 
           {/* Mobile : grille 3 colonnes avec icône, comme la maquette. Desktop : ligne unique. */}
-          <div className="mx-auto mt-4 grid w-full max-w-sm grid-cols-3 gap-2 sm:mx-0 sm:flex sm:max-w-lg sm:flex-wrap sm:justify-start">
+          <div className="mx-auto mt-4 grid w-full max-w-sm grid-cols-3 gap-2 sm:mx-0 sm:flex sm:max-w-2xl sm:flex-wrap sm:justify-start">
             {t.home.categories.map((category, i) => (
               <Link
                 key={category}
