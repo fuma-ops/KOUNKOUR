@@ -6,22 +6,15 @@
     </linearGradient>
   </defs>
   <circle cx="50" cy="50" r="48" fill="url(#g)" />
-  <g transform="translate(50,52) scale(0.9) translate(-50,-50)" stroke-linejoin="round">
-    <path d="M50 84 C 40 77 26 75 11 78 L 11 81 C 26 78 40 80 50 87 C 60 80 74 78 89 81 L 89 78 C 74 75 60 77 50 84 Z" fill="#FFFDFE" stroke="rgba(36,16,25,0.18)" stroke-width="0.8" />
-    <path d="M50 58 C 40 52 26 50 13 53 L 13 76 C 26 73 40 75 50 82 Z" fill="#FFFDFE" stroke="rgba(36,16,25,0.18)" stroke-width="0.8" />
-    <path d="M50 58 C 60 52 74 50 87 53 L 87 76 C 74 73 60 75 50 82 Z" fill="#FFFDFE" stroke="rgba(36,16,25,0.18)" stroke-width="0.8" />
-    <g fill="none" stroke="rgba(36,16,25,0.18)" stroke-width="1" stroke-linecap="round">
-      <path d="M44 63 C 37 59 29 58 20 59.5" />
-      <path d="M44 69 C 37 65 29 64 20 65.5" />
-      <path d="M56 63 C 63 59 71 58 80 59.5" />
-      <path d="M56 69 C 63 65 71 64 80 65.5" />
-    </g>
-    <path d="M34 38 L34 49 C 40 54 60 54 66 49 L66 38 Z" fill="#FFFDFE" stroke="rgba(36,16,25,0.18)" stroke-width="0.8" />
-    <path d="M50 23 L82 34 L50 45 L18 34 Z" fill="#FFFDFE" stroke="rgba(36,16,25,0.18)" stroke-width="0.8" />
-    <path d="M50 34 L74 36.8" fill="none" stroke="rgba(36,16,25,0.18)" stroke-width="1" stroke-linecap="round" />
-    <circle cx="50" cy="34" r="1.8" fill="#FFFDFE" stroke="rgba(36,16,25,0.18)" stroke-width="0.8" />
-    <path d="M74 36.8 L74 48" fill="none" stroke="#FFFDFE" stroke-width="1.6" stroke-linecap="round" />
-    <rect x="72" y="47" width="4" height="7" rx="1.5" fill="#FFFDFE" />
-    <path d="M50 1 L52.35 7.76 L59.51 7.91 L53.8 12.24 L55.88 19.09 L50 15 L44.12 19.09 L46.2 12.24 L40.49 7.91 L47.65 7.76 Z" fill="#1F8A5F" />
+  <g transform="translate(50,52) scale(0.86) translate(-50,-50)" stroke-linejoin="round">
+    <path fill-rule="evenodd" fill="#159356" d="M50 1.5 L57.94 25.92 L37.16 10.83 L62.84 10.83 L42.06 25.92 Z" />
+    <path fill="#FFFDFE" stroke="rgba(90,12,45,0.30)" stroke-width="0.6" d="M50 61 C 38 55 24 54 12 58 L 15 72 C 27 68 40 69 50 75 Z" />
+    <path fill="#FFFDFE" stroke="rgba(90,12,45,0.30)" stroke-width="0.6" d="M50 61 C 62 55 76 54 88 58 L 85 72 C 73 68 60 69 50 75 Z" />
+    <path fill="#FFFDFE" stroke="rgba(90,12,45,0.30)" stroke-width="0.6" d="M33 45 L67 45 L62 67 C 57 70 43 70 38 67 Z" />
+    <path fill="#E4C9D5" opacity="0.9" d="M34 47 L50 56 L66 47 L66 49 L50 58 L34 49 Z" />
+    <path fill="#E4C9D5" d="M17 42 L50 54 L83 42 L83 45 L50 57 L17 45 Z" />
+    <path fill="#FFFDFE" stroke="rgba(90,12,45,0.30)" stroke-width="0.6" d="M50 30 L83 42 L50 54 L17 42 Z" />
+    <path d="M50 40 L83 42 L83 60" fill="none" stroke="#FFFDFE" stroke-width="1.6" stroke-linecap="round" />
+    <path fill="#FFFDFE" stroke="rgba(90,12,45,0.30)" stroke-width="0.4" d="M80.4 59 L85.6 59 L84 69 L82 69 Z" />
   </g>
 </svg>
