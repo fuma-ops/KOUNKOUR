@@ -4,6 +4,11 @@ export interface Dictionary {
   dir: "ltr" | "rtl";
   appName: string;
   tagline: string;
+  splash: {
+    subtitle: string;
+    sloganLine1: string;
+    sloganLine2: string;
+  };
   nav: {
     home: string;
     contests: string;
@@ -134,6 +139,11 @@ export const dictionary: Record<Lang, Dictionary> = {
     dir: "ltr",
     appName: "KounKour",
     tagline: "Votre guide vers les concours publics au Maroc",
+    splash: {
+      subtitle: "Concours & Communauté Maroc",
+      sloganLine1: "Chaque concours",
+      sloganLine2: "Une seule communauté",
+    },
     nav: {
       home: "Accueil",
       contests: "Concours",
@@ -269,6 +279,11 @@ export const dictionary: Record<Lang, Dictionary> = {
     dir: "rtl",
     appName: "كونكور",
     tagline: "دليلك نحو المباريات العمومية بالمغرب",
+    splash: {
+      subtitle: "مباريات ومجتمع المغرب",
+      sloganLine1: "كل مباراة",
+      sloganLine2: "مجتمع واحد",
+    },
     nav: {
       home: "الرئيسية",
       contests: "المباريات",
