@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { getNavItems } from "./nav-items";
 import { LanguageSwitcher } from "./language-switcher";
+import { LogoMark } from "@/components/brand/logo-mark";
 
 export function Header() {
   const { t } = useLanguage();
@@ -14,7 +15,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-20 border-b border-[var(--color-border)] bg-[var(--color-background)]/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
-        <Link href="/" className="text-lg font-bold text-[var(--color-primary)]">
+        <Link href="/" className="flex items-center gap-2 text-lg font-bold text-[var(--color-primary)]">
+          <LogoMark size={28} />
           {t.appName}
         </Link>
 

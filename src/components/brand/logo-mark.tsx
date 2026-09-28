@@ -1,0 +1,46 @@
+// Logo KounKour — livre ouvert surmonté d'une étoile, dégradé bordeaux.
+// Reproduit la direction du moodboard fourni par le propriétaire
+// (splash screen : livre + étoile, badge circulaire bordeaux/rose).
+export function LogoMark({ size = 96, className = "" }: { size?: number; className?: string }) {
+  const gradientId = "kounkour-logo-gradient";
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      className={className}
+      role="img"
+      aria-label="KounKour"
+    >
+      <defs>
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#8D174B" />
+          <stop offset="100%" stopColor="#C73578" />
+        </linearGradient>
+      </defs>
+
+      <circle cx="50" cy="50" r="48" fill={`url(#${gradientId})`} />
+
+      {/* Livre ouvert : deux pages symétriques partant de la reliure centrale */}
+      <path
+        d="M50 66 C 34 56 20 42 24 24 C 34 34 44 48 50 66 Z"
+        fill="#FFFDFE"
+        opacity="0.96"
+      />
+      <path
+        d="M50 66 C 66 56 80 42 76 24 C 66 34 56 48 50 66 Z"
+        fill="#FFFDFE"
+        opacity="0.96"
+      />
+      {/* Reliure centrale */}
+      <line x1="50" y1="66" x2="50" y2="30" stroke="#8D174B" strokeWidth="1.4" opacity="0.5" />
+
+      {/* Étoile au-dessus de la reliure */}
+      <path
+        d="M50 12 L53.4 20.6 L62.5 21.3 L55.5 27.2 L57.8 36.1 L50 31.1 L42.2 36.1 L44.5 27.2 L37.5 21.3 L46.6 20.6 Z"
+        fill="#FFFDFE"
+      />
+    </svg>
+  );
+}

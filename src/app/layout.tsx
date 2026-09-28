@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Tajawal } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/language-provider";
-import { AppShell } from "@/components/layout/app-shell";
 
 const interFr = Inter({ subsets: ["latin"], variable: "--font-sans-fr" });
 const tajawalAr = Tajawal({
@@ -40,9 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: antiFlashScript }} />
       </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        <LanguageProvider>
-          <AppShell>{children}</AppShell>
-        </LanguageProvider>
+        <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
   );
