@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+/*
+  Design tokens — annexe Design & UX/UI KounKour (§1-2).
+  Valeurs indicatives à valider sur prototype pour le contraste WCAG AA
+  avant utilisation en production (voir docs/phase-0-audit-architecture.md).
+*/
+:root {
+  --color-primary: #8d174b; /* bordeaux profond — CTA, liens actifs, marque */
+  --color-accent: #c73578; /* rose/magenta — badges, mise en évidence ponctuelle */
+  --color-background: #fffdfe; /* fond principal, clair et reposant */
+  --color-surface: #ffffff; /* cartes et panneaux */
+  --color-surface-alt: #f8f2f5; /* sections alternatives, filtres */
+  --color-text: #242126; /* texte principal, contraste fort */
+  --color-success: #2f7d4f; /* statut officiel / vérifié uniquement */
+  --color-warning: #b7791f; /* échéance / avertissement informatif, jamais fausse urgence */
+}
+
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-accent: var(--color-accent);
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-surface-alt: var(--color-surface-alt);
+  --color-text: var(--color-text);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+}
+
+html[dir="rtl"] body {
+  text-align: start;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+}
