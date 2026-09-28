@@ -6,8 +6,16 @@
     </linearGradient>
   </defs>
   <circle cx="50" cy="50" r="48" fill="url(#g)" />
-  <path d="M50 66 C 34 56 20 42 24 24 C 34 34 44 48 50 66 Z" fill="#FFFDFE" opacity="0.96" />
-  <path d="M50 66 C 66 56 80 42 76 24 C 66 34 56 48 50 66 Z" fill="#FFFDFE" opacity="0.96" />
-  <line x1="50" y1="66" x2="50" y2="30" stroke="#8D174B" stroke-width="1.4" opacity="0.5" />
-  <path d="M50 12 L53.4 20.6 L62.5 21.3 L55.5 27.2 L57.8 36.1 L50 31.1 L42.2 36.1 L44.5 27.2 L37.5 21.3 L46.6 20.6 Z" fill="#FFFDFE" />
+  <g transform="translate(50,52) scale(0.92) translate(-50,-50)">
+    <path d="M50 84 C 36 76 24 62 28 44 C 38 54 46 68 50 84 Z" fill="#FFFDFE" />
+    <path d="M50 84 C 64 76 76 62 72 44 C 62 54 54 68 50 84 Z" fill="#FFFDFE" />
+    <line x1="50" y1="82" x2="50" y2="48" stroke="#8D174B" stroke-width="1.2" opacity="0.35" />
+    <path d="M47 83 L53 83 L53 94 L50 90 L47 94 Z" fill="#C73578" />
+    <path d="M41 37 L59 37 L55.5 51 L44.5 51 Z" fill="#FFFDFE" />
+    <path d="M50 28 L74 38 L50 48 L26 38 Z" fill="#241019" />
+    <circle cx="50" cy="37.5" r="2.2" fill="#241019" />
+    <path d="M51 38 C 59 40 63 45 64 51" fill="none" stroke="#C73578" stroke-width="1.8" stroke-linecap="round" />
+    <ellipse cx="64.5" cy="53.5" rx="2.6" ry="4" fill="#C73578" transform="rotate(15 64.5 53.5)" />
+    <path d="M50 2 L53.6 11.2 L63.3 12 L55.9 18.2 L58.3 27.6 L50 22.4 L41.7 27.6 L44.1 18.2 L36.7 12 L46.4 11.2 Z" fill="#1F8A5F" />
+  </g>
 </svg>
