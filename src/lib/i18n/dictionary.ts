@@ -63,6 +63,21 @@ export interface Dictionary {
     startPractice: string;
     demoNotice: string;
   };
+  qcm: {
+    questionOf: (n: number, total: number) => string;
+    trainingMode: string;
+    previous: string;
+    next: string;
+    finish: string;
+    resultTitle: string;
+    resultNote: string;
+    reviewMistakes: string;
+    restart: string;
+    backToCatalog: string;
+    yourAnswer: string;
+    correctAnswerLabel: string;
+    noMistakes: string;
+  };
   community: {
     title: string;
     subtitle: string;
@@ -71,6 +86,9 @@ export interface Dictionary {
     memberTag: string;
     verifiedTag: string;
     replies: (n: number) => string;
+    like: string;
+    report: string;
+    reported: string;
   };
   profile: {
     title: string;
@@ -178,6 +196,22 @@ export const dictionary: Record<Lang, Dictionary> = {
       startPractice: "Commencer",
       demoNotice: "QCM de démonstration — données fictives",
     },
+    qcm: {
+      questionOf: (n, total) => `Question ${n} sur ${total}`,
+      trainingMode: "Mode entraînement — sans minuteur",
+      previous: "Précédent",
+      next: "Suivant",
+      finish: "Terminer",
+      resultTitle: "Résultat de cette session",
+      resultNote:
+        "QCM de démonstration : ce résultat n'est pas enregistré. Le suivi de progression sera disponible avec la Préparation complète.",
+      reviewMistakes: "Revoir mes erreurs",
+      restart: "Recommencer",
+      backToCatalog: "Retour au catalogue",
+      yourAnswer: "Votre réponse",
+      correctAnswerLabel: "Bonne réponse",
+      noMistakes: "Aucune erreur sur cette session de démonstration.",
+    },
     community: {
       title: "Communauté",
       subtitle: "Questions, réponses et entraide entre candidats",
@@ -186,6 +220,9 @@ export const dictionary: Record<Lang, Dictionary> = {
       memberTag: "Avis d'un membre",
       verifiedTag: "Réponse vérifiée",
       replies: (n) => (n <= 1 ? `${n} réponse` : `${n} réponses`),
+      like: "Utile",
+      report: "Signaler",
+      reported: "Signalé",
     },
     profile: {
       title: "Profil",
@@ -292,6 +329,22 @@ export const dictionary: Record<Lang, Dictionary> = {
       startPractice: "ابدأ",
       demoNotice: "اختبار تجريبي — بيانات وهمية",
     },
+    qcm: {
+      questionOf: (n, total) => `السؤال ${n} من ${total}`,
+      trainingMode: "وضع التدريب — بدون مؤقت",
+      previous: "السابق",
+      next: "التالي",
+      finish: "إنهاء",
+      resultTitle: "نتيجة هذه الجلسة",
+      resultNote:
+        "اختبار تجريبي: هذه النتيجة غير محفوظة. تتبع التقدم سيكون متاحا مع وحدة التحضير الكاملة.",
+      reviewMistakes: "مراجعة أخطائي",
+      restart: "إعادة المحاولة",
+      backToCatalog: "العودة إلى القائمة",
+      yourAnswer: "إجابتك",
+      correctAnswerLabel: "الإجابة الصحيحة",
+      noMistakes: "لا توجد أخطاء في هذه الجلسة التجريبية.",
+    },
     community: {
       title: "المجتمع",
       subtitle: "أسئلة وأجوبة وتعاون بين المترشحين",
@@ -300,6 +353,9 @@ export const dictionary: Record<Lang, Dictionary> = {
       memberTag: "رأي عضو",
       verifiedTag: "إجابة موثقة",
       replies: (n) => `${n} ردود`,
+      like: "مفيد",
+      report: "إبلاغ",
+      reported: "تم الإبلاغ",
     },
     profile: {
       title: "حسابي",

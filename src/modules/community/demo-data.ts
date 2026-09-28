@@ -9,6 +9,7 @@ export interface DemoPost {
   text: { fr: string; ar: string };
   tag: PostTag;
   replies: number;
+  likes: number;
 }
 
 export const demoPosts: DemoPost[] = [
@@ -23,6 +24,7 @@ export const demoPosts: DemoPost[] = [
     },
     tag: "member",
     replies: 3,
+    likes: 12,
   },
   {
     id: "2",
@@ -35,5 +37,6 @@ export const demoPosts: DemoPost[] = [
     },
     tag: "verified",
     replies: 1,
+    likes: 28,
   },
 ];

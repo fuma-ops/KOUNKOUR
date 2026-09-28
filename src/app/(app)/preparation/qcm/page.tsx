@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -27,7 +28,9 @@ export default function QcmCatalogPage() {
                 {qcm.level[lang]} · {qcm.questionCount} · {qcm.durationMin ? `${qcm.durationMin} min` : "—"}
               </p>
             </div>
-            <Button variant="secondary">{t.preparation.startPractice}</Button>
+            <Link href={`/preparation/qcm/${qcm.id}`}>
+              <Button variant="secondary">{t.preparation.startPractice}</Button>
+            </Link>
           </Card>
         ))}
       </div>
