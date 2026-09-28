@@ -60,6 +60,27 @@ body {
   color: var(--color-text);
 }
 
+/*
+  Décor de fond « floraison rose de Marrakech » — uniquement sur desktop
+  (≥ md). Posé sur <html> (le canvas) en position fixe : il reste en toile de
+  fond pendant le défilement, les pages transparentes le laissent apparaître
+  dans les gouttières et les cartes blanches flottent par-dessus. Sur mobile,
+  on garde le fond clair uni pour la lisibilité et la légèreté.
+*/
+@media (min-width: 768px) {
+  html {
+    background-color: var(--color-background);
+    background-image: url("/images/bg-blossom.svg");
+    background-position: center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  body {
+    background: transparent;
+  }
+}
+
 /* Respecte prefers-reduced-motion — annexe §6 */
 @media (prefers-reduced-motion: reduce) {
   *,
