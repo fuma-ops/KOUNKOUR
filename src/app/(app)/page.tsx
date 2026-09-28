@@ -71,7 +71,7 @@ export default function Home() {
             reflète pas en arabe, le ciel dégagé reste toujours à gauche de
             l'image, donc le texte doit y rester lui aussi quelle que soit la
             langue — seul l'alignement du texte (text-start) suit la langue. */}
-        <div className="relative flex h-full flex-col justify-end px-5 pb-8 pt-24 text-start [text-shadow:0_1px_18px_rgba(255,253,254,0.85)] sm:justify-center sm:pl-[20%] sm:pr-10 sm:py-14">
+        <div className="relative flex h-full flex-col justify-end px-5 pb-14 pt-24 text-start [text-shadow:0_1px_18px_rgba(255,253,254,0.85)] sm:justify-center sm:pl-[20%] sm:pr-10 sm:pt-10 sm:pb-28">
           {/* Sur mobile, ce bloc reste dans une colonne étroite (jamais sur le
               visage de la photo), ancrée physiquement à gauche via mr-auto. */}
           <div className="max-w-[72%] mr-auto sm:max-w-2xl">
