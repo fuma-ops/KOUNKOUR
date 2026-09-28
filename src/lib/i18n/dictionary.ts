@@ -113,7 +113,7 @@ export const dictionary: Record<Lang, Dictionary> = {
   fr: {
     dir: "ltr",
     appName: "KounKour",
-    tagline: "Votre partenaire vers les concours publics",
+    tagline: "Votre guide vers les concours publics au Maroc",
     nav: {
       home: "Accueil",
       contests: "Concours",
@@ -227,7 +227,7 @@ export const dictionary: Record<Lang, Dictionary> = {
   ar: {
     dir: "rtl",
     appName: "كونكور",
-    tagline: "شريكك في المباريات العمومية",
+    tagline: "دليلك نحو المباريات العمومية بالمغرب",
     nav: {
       home: "الرئيسية",
       contests: "المباريات",

@@ -1,40 +1,66 @@
-// Motif géométrique marocain (étoile à 8 branches, style zellige) — touche
-// locale demandée sur les côtés de l'écran de démarrage.
-export function MoroccanPatternStrip({
-  side,
+// Motifs géométriques marocains (style zellige) — touche locale demandée
+// par le propriétaire : amas d'étoiles en coin + bandeau vague en bas.
+
+export function MoroccanCornerPattern({
+  corner,
   className = "",
-  color = "#8D174B",
+  color = "#F4C6DB",
 }: {
-  side: "left" | "right";
+  corner: "top-left" | "top-right";
   className?: string;
   color?: string;
 }) {
-  const patternId = `zellige-${side}`;
+  const flip = corner === "top-right";
+  const motif = (cx: number, cy: number, r: number, opacity: number) => (
+    <g key={`${cx}-${cy}-${r}`} stroke={color} strokeWidth="1.4" fill="none" opacity={opacity}>
+      <rect x={cx - r * 0.6} y={cy - r * 0.6} width={r * 1.2} height={r * 1.2} />
+      <path
+        d={`M${cx} ${cy - r} L${cx + r} ${cy} L${cx} ${cy + r} L${cx - r} ${cy} Z`}
+      />
+    </g>
+  );
 
   return (
     <svg
+      viewBox="0 0 220 220"
       className={className}
-      width="100%"
-      height="100%"
+      style={{ transform: flip ? "scaleX(-1)" : undefined }}
+      aria-hidden
+    >
+      {motif(30, 30, 60, 0.9)}
+      {motif(120, 20, 40, 0.55)}
+      {motif(30, 130, 38, 0.4)}
+    </svg>
+  );
+}
+
+export function MoroccanWaveBand({ className = "" }: { className?: string }) {
+  const patternId = "zellige-wave";
+
+  return (
+    <svg
+      viewBox="0 0 400 140"
       preserveAspectRatio="none"
+      className={className}
       aria-hidden
     >
       <defs>
-        <pattern id={patternId} width="34" height="34" patternUnits="userSpaceOnUse">
-          <g fill="none" stroke={color} strokeWidth="1">
-            <rect x="7" y="7" width="20" height="20" opacity="0.55" />
-            <path d="M17 3 L31 17 L17 31 L3 17 Z" opacity="0.55" />
+        <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#7A1440" />
+          <stop offset="100%" stopColor="#D6428C" />
+        </linearGradient>
+        <pattern id={patternId} width="26" height="26" patternUnits="userSpaceOnUse">
+          <g stroke="#FFFDFE" strokeWidth="1" fill="none" opacity="0.18">
+            <rect x="5" y="5" width="16" height="16" />
+            <path d="M13 2 L24 13 L13 24 L2 13 Z" />
           </g>
         </pattern>
-        <linearGradient id={`${patternId}-fade`} x1={side === "left" ? "1" : "0"} y1="0" x2={side === "left" ? "0" : "1"} y2="0">
-          <stop offset="0%" stopColor="white" stopOpacity="0" />
-          <stop offset="100%" stopColor="white" stopOpacity="1" />
-        </linearGradient>
-        <mask id={`${patternId}-mask`}>
-          <rect width="100%" height="100%" fill={`url(#${patternId}-fade)`} />
-        </mask>
+        <clipPath id="wave-clip">
+          <path d="M0,55 C100,15 300,90 400,45 L400,140 L0,140 Z" />
+        </clipPath>
       </defs>
-      <rect width="100%" height="100%" fill={`url(#${patternId})`} mask={`url(#${patternId}-mask)`} />
+      <path d="M0,55 C100,15 300,90 400,45 L400,140 L0,140 Z" fill="url(#wave-gradient)" />
+      <rect width="400" height="140" fill={`url(#${patternId})`} clipPath="url(#wave-clip)" />
     </svg>
   );
 }

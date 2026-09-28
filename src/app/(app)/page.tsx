@@ -25,16 +25,17 @@ export default function Home() {
         <DemoBadge label={t.common.demoBadge} />
       </div>
 
-      <section className="relative overflow-hidden rounded-[var(--radius-lg)]">
+      <section className="relative min-h-[420px] overflow-hidden rounded-[var(--radius-lg)] sm:min-h-[460px]">
         <Image
           src="/images/hero-home-base.png"
           alt=""
           fill
           priority
-          className="object-cover"
+          sizes="100vw"
+          className="object-cover object-[70%_100%] sm:object-[78%_82%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] via-[var(--color-surface)]/80 sm:bg-gradient-to-r sm:from-[var(--color-surface)] sm:via-[var(--color-surface)]/70 sm:to-transparent rtl:sm:bg-gradient-to-l" />
-        <div className="relative px-5 py-10 text-center sm:px-10 sm:py-16 sm:text-start">
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface)] from-45% via-[var(--color-surface)]/90 to-transparent sm:bg-gradient-to-r sm:from-[var(--color-surface)] sm:from-35% sm:via-[var(--color-surface)]/75 sm:to-transparent rtl:sm:bg-gradient-to-l" />
+        <div className="relative flex min-h-[420px] flex-col justify-end px-5 py-10 text-center sm:min-h-[460px] sm:justify-center sm:px-10 sm:py-16 sm:text-start">
           <h1 className="text-2xl font-bold text-[var(--color-text)] sm:max-w-sm sm:text-3xl">
             {t.home.heading}
           </h1>
