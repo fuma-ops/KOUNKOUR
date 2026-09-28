@@ -74,7 +74,7 @@ export default function Home() {
         <div className="relative flex h-full flex-col justify-end px-5 pb-14 pt-24 text-start [text-shadow:0_1px_18px_rgba(255,253,254,0.85)] sm:justify-center sm:pl-[20%] sm:pr-10 sm:pt-10 sm:pb-28">
           {/* Sur mobile, ce bloc reste dans une colonne étroite (jamais sur le
               visage de la photo), ancrée physiquement à gauche via mr-auto. */}
-          <div className="max-w-[72%] mr-auto sm:max-w-2xl">
+          <div className="max-w-[72%] mr-auto sm:max-w-3xl">
             <p className="text-2xl font-extrabold tracking-tight sm:text-4xl">
               {lang === "ar" ? (
                 <span className="text-[var(--color-primary)]">{t.appName}</span>
@@ -99,7 +99,7 @@ export default function Home() {
 
             <form
               role="search"
-              className="mt-5 flex w-full items-center gap-2 rounded-full bg-[var(--color-surface)] py-2 ps-5 pe-2 shadow-lg sm:max-w-2xl"
+              className="mt-5 flex w-full items-center gap-2 rounded-full bg-[var(--color-surface)] py-2 ps-5 pe-2 shadow-lg sm:max-w-3xl"
             >
               <svg aria-hidden viewBox="0 0 20 20" fill="none" className="h-4 w-4 shrink-0 text-[var(--color-text-muted)]">
                 <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.6" />
@@ -129,7 +129,7 @@ export default function Home() {
           {/* Mobile : grille 3 colonnes avec icône, comme la maquette. Desktop : ligne unique.
               mr-auto (physique) au lieu de sm:mx-0 : ancre la ligne à gauche, sous le
               bloc titre, quelle que soit la langue — cf. commentaire plus haut. */}
-          <div className="mt-4 grid w-full max-w-sm grid-cols-3 gap-2 sm:mr-auto sm:flex sm:max-w-2xl sm:flex-wrap sm:justify-start">
+          <div className="mt-4 grid w-full max-w-sm grid-cols-3 gap-2 sm:mr-auto sm:flex sm:max-w-3xl sm:flex-wrap sm:justify-start">
             {t.home.categories.map((category, i) => (
               <Link
                 key={category}
