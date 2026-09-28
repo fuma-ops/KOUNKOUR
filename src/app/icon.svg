@@ -1,27 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
     <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#8D174B" />
-      <stop offset="100%" stop-color="#C73578" />
+      <stop offset="0%" stop-color="#7b113a" />
+      <stop offset="100%" stop-color="#5d0c2b" />
     </linearGradient>
   </defs>
   <circle cx="50" cy="50" r="48" fill="url(#g)" />
-  <g transform="translate(50,52) scale(0.9) translate(-50,-50)" stroke-linejoin="round">
-    <path d="M50 84 C 40 77 26 75 11 78 L 11 81 C 26 78 40 80 50 87 C 60 80 74 78 89 81 L 89 78 C 74 75 60 77 50 84 Z" fill="#FFFDFE" stroke="rgba(36,16,25,0.18)" stroke-width="0.8" />
-    <path d="M50 58 C 40 52 26 50 13 53 L 13 76 C 26 73 40 75 50 82 Z" fill="#FFFDFE" stroke="rgba(36,16,25,0.18)" stroke-width="0.8" />
-    <path d="M50 58 C 60 52 74 50 87 53 L 87 76 C 74 73 60 75 50 82 Z" fill="#FFFDFE" stroke="rgba(36,16,25,0.18)" stroke-width="0.8" />
-    <g fill="none" stroke="rgba(36,16,25,0.18)" stroke-width="1" stroke-linecap="round">
-      <path d="M44 63 C 37 59 29 58 20 59.5" />
-      <path d="M44 69 C 37 65 29 64 20 65.5" />
-      <path d="M56 63 C 63 59 71 58 80 59.5" />
-      <path d="M56 69 C 63 65 71 64 80 65.5" />
+  <g transform="translate(50,50) scale(0.40) translate(-100,-80)">
+    <path d="M 100,5 L 115.5,51 L 75,21.5 L 125,21.5 L 84.5,51 Z" fill="none" stroke="#009639" stroke-width="3.5" stroke-linejoin="round" />
+    <g fill="#FDF6F8">
+      <polygon points="100,60 170,82 100,104 30,82" />
+      <path d="M 65,93 L 65,108 Q 100,126 135,108 L 135,93 Q 100,113 65,93 Z" />
+      <line x1="150" y1="88" x2="150" y2="115" stroke="#FDF6F8" stroke-width="2.5" />
+      <rect x="146.5" y="113" width="7" height="15" rx="3" />
+      <path d="M 15,130 C 45,123 75,120 100,135 C 125,120 155,123 185,130 C 155,147 125,155 100,145 C 75,155 45,147 15,130 Z" />
     </g>
-    <path d="M34 38 L34 49 C 40 54 60 54 66 49 L66 38 Z" fill="#FFFDFE" stroke="rgba(36,16,25,0.18)" stroke-width="0.8" />
-    <path d="M50 23 L82 34 L50 45 L18 34 Z" fill="#FFFDFE" stroke="rgba(36,16,25,0.18)" stroke-width="0.8" />
-    <path d="M50 34 L74 36.8" fill="none" stroke="rgba(36,16,25,0.18)" stroke-width="1" stroke-linecap="round" />
-    <circle cx="50" cy="34" r="1.8" fill="#FFFDFE" stroke="rgba(36,16,25,0.18)" stroke-width="0.8" />
-    <path d="M74 36.8 L74 48" fill="none" stroke="#FFFDFE" stroke-width="1.6" stroke-linecap="round" />
-    <rect x="72" y="47" width="4" height="7" rx="1.5" fill="#FFFDFE" />
-    <path d="M50 1 L52.35 7.76 L59.51 7.91 L53.8 12.24 L55.88 19.09 L50 15 L44.12 19.09 L46.2 12.24 L40.49 7.91 L47.65 7.76 Z" fill="#1F8A5F" />
   </g>
 </svg>
