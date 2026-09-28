@@ -1,20 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <defs>
     <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#8D174B" />
-      <stop offset="100%" stop-color="#C73578" />
+      <stop offset="0%" stop-color="#7b113a" />
+      <stop offset="100%" stop-color="#5d0c2b" />
     </linearGradient>
   </defs>
   <circle cx="50" cy="50" r="48" fill="url(#g)" />
-  <g transform="translate(50,52) scale(0.86) translate(-50,-50)" stroke-linejoin="round">
-    <path fill-rule="evenodd" fill="#159356" d="M50 1.5 L57.94 25.92 L37.16 10.83 L62.84 10.83 L42.06 25.92 Z" />
-    <path fill="#FFFDFE" stroke="rgba(90,12,45,0.30)" stroke-width="0.6" d="M50 61 C 38 55 24 54 12 58 L 15 72 C 27 68 40 69 50 75 Z" />
-    <path fill="#FFFDFE" stroke="rgba(90,12,45,0.30)" stroke-width="0.6" d="M50 61 C 62 55 76 54 88 58 L 85 72 C 73 68 60 69 50 75 Z" />
-    <path fill="#FFFDFE" stroke="rgba(90,12,45,0.30)" stroke-width="0.6" d="M33 45 L67 45 L62 67 C 57 70 43 70 38 67 Z" />
-    <path fill="#E4C9D5" opacity="0.9" d="M34 47 L50 56 L66 47 L66 49 L50 58 L34 49 Z" />
-    <path fill="#E4C9D5" d="M17 42 L50 54 L83 42 L83 45 L50 57 L17 45 Z" />
-    <path fill="#FFFDFE" stroke="rgba(90,12,45,0.30)" stroke-width="0.6" d="M50 30 L83 42 L50 54 L17 42 Z" />
-    <path d="M50 40 L83 42 L83 60" fill="none" stroke="#FFFDFE" stroke-width="1.6" stroke-linecap="round" />
-    <path fill="#FFFDFE" stroke="rgba(90,12,45,0.30)" stroke-width="0.4" d="M80.4 59 L85.6 59 L84 69 L82 69 Z" />
+  <g transform="translate(50,50) scale(0.40) translate(-100,-80)">
+    <path d="M 100,5 L 115.5,51 L 75,21.5 L 125,21.5 L 84.5,51 Z" fill="none" stroke="#009639" stroke-width="3.5" stroke-linejoin="round" />
+    <g fill="#FDF6F8">
+      <polygon points="100,60 170,82 100,104 30,82" />
+      <path d="M 65,93 L 65,108 Q 100,126 135,108 L 135,93 Q 100,113 65,93 Z" />
+      <line x1="150" y1="88" x2="150" y2="115" stroke="#FDF6F8" stroke-width="2.5" />
+      <rect x="146.5" y="113" width="7" height="15" rx="3" />
+      <path d="M 15,130 C 45,123 75,120 100,135 C 125,120 155,123 185,130 C 155,147 125,155 100,145 C 75,155 45,147 15,130 Z" />
+    </g>
   </g>
 </svg>
