@@ -23,7 +23,7 @@ const categoryIconPaths = [
 ];
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   const headingParts = t.home.heading.split(t.home.headingHighlight);
 
@@ -66,14 +66,24 @@ export default function Home() {
           <DemoBadge label={t.common.demoBadge} />
         </div>
 
-        <div className="relative flex h-full flex-col justify-end px-5 pb-8 pt-24 text-start [text-shadow:0_1px_18px_rgba(255,253,254,0.85)] sm:justify-center sm:ps-[20%] sm:pe-10 sm:py-14">
+        {/* Le bloc titre/recherche est ancré physiquement à gauche (pl/pr, mr-auto)
+            plutôt qu'en propriétés logiques (start/end) : la photo ne se
+            reflète pas en arabe, le ciel dégagé reste toujours à gauche de
+            l'image, donc le texte doit y rester lui aussi quelle que soit la
+            langue — seul l'alignement du texte (text-start) suit la langue. */}
+        <div className="relative flex h-full flex-col justify-end px-5 pb-8 pt-24 text-start [text-shadow:0_1px_18px_rgba(255,253,254,0.85)] sm:justify-center sm:pl-[20%] sm:pr-10 sm:py-14">
           {/* Sur mobile, ce bloc reste dans une colonne étroite (jamais sur le
-              visage de la photo) ; sm:contents neutralise le wrapper sur
-              desktop pour ne rien changer à la mise en page déjà validée. */}
-          <div className="max-w-[72%] sm:contents">
+              visage de la photo), ancrée physiquement à gauche via mr-auto. */}
+          <div className="max-w-[72%] mr-auto sm:max-w-2xl">
             <p className="text-2xl font-extrabold tracking-tight sm:text-4xl">
-              <span className="text-[var(--color-primary)]">Koun</span>
-              <span className="text-[var(--color-accent)]">Kour</span>
+              {lang === "ar" ? (
+                <span className="text-[var(--color-primary)]">{t.appName}</span>
+              ) : (
+                <>
+                  <span className="text-[var(--color-primary)]">Koun</span>
+                  <span className="text-[var(--color-accent)]">Kour</span>
+                </>
+              )}
             </p>
             <h1 className="mt-1 text-2xl font-bold leading-tight text-[var(--color-text)] sm:max-w-lg sm:text-4xl">
               {headingParts.map((part, i) => (
@@ -116,8 +126,10 @@ export default function Home() {
             </form>
           </div>
 
-          {/* Mobile : grille 3 colonnes avec icône, comme la maquette. Desktop : ligne unique. */}
-          <div className="mt-4 grid w-full max-w-sm grid-cols-3 gap-2 sm:mx-0 sm:flex sm:max-w-2xl sm:flex-wrap sm:justify-start">
+          {/* Mobile : grille 3 colonnes avec icône, comme la maquette. Desktop : ligne unique.
+              mr-auto (physique) au lieu de sm:mx-0 : ancre la ligne à gauche, sous le
+              bloc titre, quelle que soit la langue — cf. commentaire plus haut. */}
+          <div className="mt-4 grid w-full max-w-sm grid-cols-3 gap-2 sm:mr-auto sm:flex sm:max-w-2xl sm:flex-wrap sm:justify-start">
             {t.home.categories.map((category, i) => (
               <Link
                 key={category}
