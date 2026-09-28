@@ -39,7 +39,7 @@ export default function Home() {
           l'en-tête (fixed + transparent sur cette page, voir Header) flotte
           par-dessus au lieu de réserver sa bande blanche, et un dégradé en
           bas fond l'image dans le fond de page pour un rendu continu. */}
-      <section className="relative h-[620px] w-full overflow-hidden sm:h-auto sm:aspect-[1672/941]">
+      <section className="relative h-[620px] w-full overflow-hidden sm:h-auto sm:aspect-[1672/941] sm:max-h-[820px]">
         {/* Mobile : cadrage portrait dédié */}
         <Image
           src="/images/hero-home-base.png"
@@ -66,67 +66,70 @@ export default function Home() {
           <DemoBadge label={t.common.demoBadge} />
         </div>
 
-        <div className="relative flex h-full flex-col justify-end px-5 pb-8 pt-24 text-center [text-shadow:0_1px_16px_rgba(255,253,254,0.75)] sm:justify-center sm:px-10 sm:py-14 sm:text-start">
-          <p className="mx-auto text-2xl font-extrabold tracking-tight sm:mx-0 sm:text-4xl">
-            <span className="text-[var(--color-primary)]">Koun</span>
-            <span className="text-[var(--color-accent)]">Kour</span>
-          </p>
-          <h1 className="mt-1 text-2xl font-bold leading-tight text-[var(--color-text)] sm:max-w-md sm:text-4xl">
-            {headingParts.map((part, i) => (
-              <span key={i}>
-                {part}
-                {i < headingParts.length - 1 && (
-                  <span className="text-[var(--color-accent)]">{t.home.headingHighlight}</span>
-                )}
-              </span>
-            ))}
-          </h1>
-          <p className="mx-auto mt-3 max-w-xl text-sm text-[var(--color-text-muted)] sm:mx-0 sm:max-w-sm">
-            {t.home.subheading}
-          </p>
+        <div className="relative flex h-full flex-col justify-end px-4 pb-6 sm:justify-center sm:px-10 sm:py-14">
+          {/* Carte translucide/floutée : garantit la lisibilité du texte quel que
+              soit le contenu de la photo derrière elle, à toute taille d'écran —
+              plutôt que de dépendre d'un recadrage précis ou d'une seule couleur. */}
+          <div className="mx-auto w-full max-w-sm rounded-[var(--radius-lg)] bg-[var(--color-surface)]/70 p-5 text-center shadow-xl backdrop-blur-md sm:mx-0 sm:max-w-lg sm:p-8 sm:text-start">
+            <p className="text-2xl font-extrabold tracking-tight sm:text-4xl">
+              <span className="text-[var(--color-primary)]">Koun</span>
+              <span className="text-[var(--color-accent)]">Kour</span>
+            </p>
+            <h1 className="mt-1 text-2xl font-bold leading-tight text-[var(--color-text)] sm:text-4xl">
+              {headingParts.map((part, i) => (
+                <span key={i}>
+                  {part}
+                  {i < headingParts.length - 1 && (
+                    <span className="text-[var(--color-accent)]">{t.home.headingHighlight}</span>
+                  )}
+                </span>
+              ))}
+            </h1>
+            <p className="mt-3 text-sm text-[var(--color-text)] sm:max-w-sm">{t.home.subheading}</p>
 
-          <form
-            role="search"
-            className="mx-auto mt-5 flex w-full max-w-lg items-center gap-2 rounded-full bg-[var(--color-surface)] py-2 ps-5 pe-2 shadow-lg sm:mx-0"
-          >
-            <svg aria-hidden viewBox="0 0 20 20" fill="none" className="h-4 w-4 shrink-0 text-[var(--color-text-muted)]">
-              <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.6" />
-              <path d="m14 14 4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-            </svg>
-            <label htmlFor="home-search" className="sr-only">
-              {t.home.searchPlaceholder}
-            </label>
-            <input
-              id="home-search"
-              type="search"
-              placeholder={t.home.searchPlaceholder}
-              className="min-w-0 flex-1 bg-transparent text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none"
-            />
-            <button
-              type="submit"
-              aria-label={t.home.searchPlaceholder}
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-white transition-colors hover:bg-[var(--color-primary-hover)]"
+            <form
+              role="search"
+              className="mt-5 flex w-full items-center gap-2 rounded-full bg-[var(--color-surface)] py-2 ps-5 pe-2 shadow-lg"
             >
-              <svg aria-hidden viewBox="0 0 24 24" fill="none" className="h-4 w-4 rtl:-scale-x-100">
-                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <svg aria-hidden viewBox="0 0 20 20" fill="none" className="h-4 w-4 shrink-0 text-[var(--color-text-muted)]">
+                <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.6" />
+                <path d="m14 14 4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
               </svg>
-            </button>
-          </form>
-
-          {/* Mobile : grille 3 colonnes avec icône, comme la maquette. Desktop : ligne unique. */}
-          <div className="mx-auto mt-4 grid w-full max-w-sm grid-cols-3 gap-2 sm:mx-0 sm:flex sm:max-w-lg sm:flex-wrap sm:justify-start">
-            {t.home.categories.map((category, i) => (
-              <Link
-                key={category}
-                href="/concours"
-                className="flex min-h-9 items-center justify-center gap-1 rounded-full bg-[var(--color-surface)]/90 px-2 py-1.5 text-[11px] font-medium text-[var(--color-text)] shadow-sm transition-colors hover:bg-[var(--color-surface)] sm:justify-start sm:gap-1.5 sm:px-3.5 sm:text-xs"
+              <label htmlFor="home-search" className="sr-only">
+                {t.home.searchPlaceholder}
+              </label>
+              <input
+                id="home-search"
+                type="search"
+                placeholder={t.home.searchPlaceholder}
+                className="min-w-0 flex-1 bg-transparent text-sm text-[var(--color-text)] placeholder:text-[var(--color-text-muted)] focus:outline-none"
+              />
+              <button
+                type="submit"
+                aria-label={t.home.searchPlaceholder}
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)] text-white transition-colors hover:bg-[var(--color-primary-hover)]"
               >
-                <svg aria-hidden viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5 shrink-0 text-[var(--color-primary)]">
-                  <path d={categoryIconPaths[i]} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                <svg aria-hidden viewBox="0 0 24 24" fill="none" className="h-4 w-4 rtl:-scale-x-100">
+                  <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-                <span className="leading-tight">{category}</span>
-              </Link>
-            ))}
+              </button>
+            </form>
+
+            {/* Mobile : grille 3 colonnes avec icône, comme la maquette. Desktop : ligne unique. */}
+            <div className="mt-4 grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:justify-start">
+              {t.home.categories.map((category, i) => (
+                <Link
+                  key={category}
+                  href="/concours"
+                  className="flex min-h-9 items-center justify-center gap-1 rounded-full bg-[var(--color-surface-alt)] px-2 py-1.5 text-[11px] font-medium text-[var(--color-text)] shadow-sm transition-colors hover:bg-[var(--color-surface)] sm:justify-start sm:gap-1.5 sm:px-3.5 sm:text-xs"
+                >
+                  <svg aria-hidden viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5 shrink-0 text-[var(--color-primary)]">
+                    <path d={categoryIconPaths[i]} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span className="leading-tight">{category}</span>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </section>
