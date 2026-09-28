@@ -9,6 +9,19 @@ import { ContestCard } from "@/modules/contests/contest-card";
 import { demoContests } from "@/modules/contests/demo-data";
 import { daysUntil } from "@/lib/local-date";
 
+// Icônes décoratives des catégories du hero (annexe §3 — pastilles avec icône).
+// Rendu direct, sans passer par un composant réutilisable : usage unique à
+// cet écran, pas de raison d'en faire une abstraction partagée.
+const categoryIconPaths = [
+  "M4 21V7l8-4 8 4v14M9 21v-11h6v11M4 21h16", // Administration
+  "M2 8l10-5 10 5-10 5-10-5Zm4 3v5c0 1.5 3 3 6 3s6-1.5 6-3v-5", // Éducation
+  "M12 20s-7-4.35-9.5-8.5C.8 8.2 2.4 5 5.6 5c1.7 0 3.1.9 3.9 2.2C10.3 5.9 11.7 5 13.4 5c3.2 0 4.8 3.2 3.1 6.5C14 15.65 12 20 12 20Z", // Santé
+  "M3 7h18v10H3V7Zm9 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4ZM5 9v.01M19 15v.01", // Finances
+  "M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z", // Sécurité
+  "M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm8 1a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM2 20c0-3.3 2.7-6 6-6s6 2.7 6 6M14.5 14.5c2.6.4 4.5 2.3 4.5 4.5", // Collectivités
+  "M5 12h.01M12 12h.01M19 12h.01", // Autres
+];
+
 export default function Home() {
   const { t } = useLanguage();
 
@@ -21,13 +34,11 @@ export default function Home() {
     .slice(0, 2);
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8">
-      <div className="mb-2 flex justify-end">
-        <DemoBadge label={t.common.demoBadge} />
-      </div>
-
-      <section className="relative h-[420px] overflow-hidden rounded-[var(--radius-lg)] sm:h-auto sm:aspect-[1672/941]">
-        {/* Mobile : cadrage portrait dédié, recadré sur une hauteur d'écran raisonnable */}
+    <>
+      {/* Hero plein cadre : image en arrière-plan véritable sur mobile (pas de
+          section encadrée/marge blanche), contenue dans une carte à partir de sm:. */}
+      <section className="relative h-[620px] w-full overflow-hidden sm:mx-auto sm:h-auto sm:max-w-6xl sm:rounded-[var(--radius-lg)] sm:aspect-[1672/941]">
+        {/* Mobile : cadrage portrait dédié */}
         <Image
           src="/images/hero-home-base.png"
           alt=""
@@ -45,7 +56,12 @@ export default function Home() {
           sizes="(min-width: 640px) 100vw, 0px"
           className="hidden object-cover sm:block"
         />
-        <div className="relative flex h-full flex-col justify-end px-5 py-8 text-center [text-shadow:0_1px_16px_rgba(255,253,254,0.75)] sm:justify-center sm:px-10 sm:py-14 sm:text-start">
+
+        <div className="absolute end-4 top-4 z-10 rounded-full bg-[var(--color-surface)]/90 p-0.5 shadow-sm sm:end-6 sm:top-6">
+          <DemoBadge label={t.common.demoBadge} />
+        </div>
+
+        <div className="relative flex h-full flex-col justify-end px-5 pb-8 pt-24 text-center [text-shadow:0_1px_16px_rgba(255,253,254,0.75)] sm:justify-center sm:px-10 sm:py-14 sm:text-start">
           <p className="mx-auto text-2xl font-extrabold tracking-tight sm:mx-0 sm:text-4xl">
             <span className="text-[var(--color-primary)]">Koun</span>
             <span className="text-[var(--color-accent)]">Kour</span>
@@ -92,62 +108,68 @@ export default function Home() {
             </button>
           </form>
 
-          <div className="mx-auto mt-4 flex max-w-lg flex-wrap justify-center gap-2 sm:mx-0 sm:justify-start">
-            {t.home.categories.map((category) => (
+          {/* Mobile : grille 3 colonnes avec icône, comme la maquette. Desktop : ligne unique. */}
+          <div className="mx-auto mt-4 grid w-full max-w-sm grid-cols-3 gap-2 sm:mx-0 sm:flex sm:max-w-lg sm:flex-wrap sm:justify-start">
+            {t.home.categories.map((category, i) => (
               <Link
                 key={category}
                 href="/concours"
-                className="min-h-9 rounded-full bg-[var(--color-surface)]/90 px-3.5 py-1.5 text-xs font-medium text-[var(--color-text)] shadow-sm transition-colors hover:bg-[var(--color-surface)]"
+                className="flex min-h-9 items-center justify-center gap-1 rounded-full bg-[var(--color-surface)]/90 px-2 py-1.5 text-[11px] font-medium text-[var(--color-text)] shadow-sm transition-colors hover:bg-[var(--color-surface)] sm:justify-start sm:gap-1.5 sm:px-3.5 sm:text-xs"
               >
-                {category}
+                <svg aria-hidden viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5 shrink-0 text-[var(--color-primary)]">
+                  <path d={categoryIconPaths[i]} stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span className="leading-tight">{category}</span>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mt-8">
-        <div className="mb-3 flex items-center justify-between">
-          <SectionHeading>{t.home.recent}</SectionHeading>
-          <Link href="/concours" className="text-sm font-medium text-[var(--color-primary)]">
-            {t.home.seeAll}
-          </Link>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {recent.map((contest) => (
-            <ContestCard key={contest.slug} contest={contest} />
-          ))}
-        </div>
-      </section>
+      <div className="mx-auto max-w-6xl px-4 py-8">
+        <section className="mt-8">
+          <div className="mb-3 flex items-center justify-between">
+            <SectionHeading>{t.home.recent}</SectionHeading>
+            <Link href="/concours" className="text-sm font-medium text-[var(--color-primary)]">
+              {t.home.seeAll}
+            </Link>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {recent.map((contest) => (
+              <ContestCard key={contest.slug} contest={contest} />
+            ))}
+          </div>
+        </section>
 
-      <section className="mt-8">
-        <div className="mb-3 flex items-center justify-between">
-          <SectionHeading>{t.home.deadlinesNear}</SectionHeading>
-          <Link href="/concours" className="text-sm font-medium text-[var(--color-primary)]">
-            {t.home.seeAll}
-          </Link>
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {deadlinesNear.map((contest) => (
-            <ContestCard key={contest.slug} contest={contest} />
-          ))}
-        </div>
-      </section>
+        <section className="mt-8">
+          <div className="mb-3 flex items-center justify-between">
+            <SectionHeading>{t.home.deadlinesNear}</SectionHeading>
+            <Link href="/concours" className="text-sm font-medium text-[var(--color-primary)]">
+              {t.home.seeAll}
+            </Link>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {deadlinesNear.map((contest) => (
+              <ContestCard key={contest.slug} contest={contest} />
+            ))}
+          </div>
+        </section>
 
-      <section className="mt-10">
-        <SectionHeading>{t.home.whyTitle}</SectionHeading>
-        <div className="mt-3 grid gap-3 sm:grid-cols-3">
-          {t.home.why.map((item) => (
-            <div
-              key={item.title}
-              className="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4"
-            >
-              <p className="font-medium text-[var(--color-text)]">{item.title}</p>
-              <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-    </div>
+        <section className="mt-10">
+          <SectionHeading>{t.home.whyTitle}</SectionHeading>
+          <div className="mt-3 grid gap-3 sm:grid-cols-3">
+            {t.home.why.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-4"
+              >
+                <p className="font-medium text-[var(--color-text)]">{item.title}</p>
+                <p className="mt-1 text-sm text-[var(--color-text-muted)]">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </>
   );
 }
