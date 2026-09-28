@@ -113,13 +113,13 @@ La Phase 3 du cahier ("Concours") est volumineuse (admin + CRUD + recherche + d�
 
 Chaque phase, à sa clôture, livre : fichiers modifiés, migrations, commandes d'installation, variables d'environnement (noms uniquement), tests exécutés et résultats, limites connues, procédure de rollback — conformément au §0 du cahier.
 
-## 7. Décision demandée
+## 7. Journal de décisions
 
-Avant de démarrer la Phase 1, merci de confirmer ou d'ajuster :
+| # | Décision | Statut | Date |
+| --- | --- | --- | --- |
+| 1 | Stack technique Next.js/Tailwind/Supabase | Validé implicitement (aucun avis contraire) | 2026-09-28 |
+| 2 | Découpage 3a/3b/3c de la Phase 3 | **Validé explicitement par le propriétaire** | 2026-09-28 |
+| 3 | 5 écarts maquettes vs cahier/annexe (addendum `docs/annexe-design-ux-ui.md`) | Non tranché explicitement — la Phase 1 applique par défaut les règles du cahier/annexe (pas de mur de compte, pas de badge Match%, nav "Préparation", bandeau décoratif générique, source par document) ; à confirmer ou corriger après revue visuelle | 2026-09-28 |
+| 4 | Phase 1 en écrans/valeurs statiques `DEMO`, sans Supabase | Validé implicitement (« lance la Phase 1 ») | 2026-09-28 |
 
-1. Le choix technique ci-dessus (Next.js/Tailwind/Supabase) — déjà en ligne avec votre cahier, pas de changement attendu sauf avis contraire.
-2. Le découpage 3a/3b/3c de la Phase 3.
-3. Les 5 écarts entre les maquettes fournies et les règles du cahier/annexe, listés dans `docs/annexe-design-ux-ui.md` (addendum) — notamment le mur de compte en fin d'onboarding et l'affichage de "Match %" dès l'accueil, qui touchent directement ce qui sera construit en Phase 1.
-4. Que la Phase 1 démarre avec des écrans/valeurs statiques (`DEMO`), sans Supabase ni données réelles, comme prévu ci-dessus.
-
-Une fois validé, la Phase 1 (design system + shell responsive) démarre.
+La Phase 1 (design system + shell responsive + écrans de démonstration) démarre sur cette base. Le point 3 reste ouvert : les écrans construits reflètent les règles du cahier plutôt que les maquettes sur ces 5 points précis, à valider ou ajuster lors de la revue.

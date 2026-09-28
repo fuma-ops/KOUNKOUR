@@ -7,13 +7,22 @@
 */
 :root {
   --color-primary: #8d174b; /* bordeaux profond — CTA, liens actifs, marque */
+  --color-primary-hover: #711039;
   --color-accent: #c73578; /* rose/magenta — badges, mise en évidence ponctuelle */
   --color-background: #fffdfe; /* fond principal, clair et reposant */
   --color-surface: #ffffff; /* cartes et panneaux */
   --color-surface-alt: #f8f2f5; /* sections alternatives, filtres */
+  --color-border: #ece2e7;
   --color-text: #242126; /* texte principal, contraste fort */
+  --color-text-muted: #6b6470;
   --color-success: #2f7d4f; /* statut officiel / vérifié uniquement */
+  --color-success-bg: #e7f3ec;
   --color-warning: #b7791f; /* échéance / avertissement informatif, jamais fausse urgence */
+  --color-warning-bg: #fbf1e0;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
 }
 
 @theme inline {
@@ -22,9 +31,24 @@
   --color-background: var(--color-background);
   --color-surface: var(--color-surface);
   --color-surface-alt: var(--color-surface-alt);
+  --color-border: var(--color-border);
   --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
   --color-success: var(--color-success);
+  --color-success-bg: var(--color-success-bg);
   --color-warning: var(--color-warning);
+  --color-warning-bg: var(--color-warning-bg);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+}
+
+html {
+  font-family: var(--font-sans-fr);
+}
+
+html[dir="rtl"] {
+  font-family: var(--font-sans-ar);
 }
 
 html[dir="rtl"] body {
@@ -34,4 +58,15 @@ html[dir="rtl"] body {
 body {
   background: var(--color-background);
   color: var(--color-text);
+}
+
+/* Respecte prefers-reduced-motion — annexe §6 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
