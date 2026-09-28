@@ -14,7 +14,9 @@ export interface Dictionary {
   home: {
     searchPlaceholder: string;
     heading: string;
+    headingHighlight: string;
     subheading: string;
+    categories: string[];
     recent: string;
     seeAll: string;
     deadlinesNear: string;
@@ -142,8 +144,10 @@ export const dictionary: Record<Lang, Dictionary> = {
     home: {
       searchPlaceholder: "Rechercher un concours, une administration…",
       heading: "Trouvez les concours qui vous correspondent",
+      headingHighlight: "concours",
       subheading:
         "Tous les concours publics du Maroc au même endroit, avec les documents, les dates et les outils pour bien vous préparer.",
+      categories: ["Administration", "Éducation", "Santé", "Finances", "Sécurité", "Collectivités", "Autres"],
       recent: "Concours récents",
       seeAll: "Voir tout",
       deadlinesNear: "Dates limites proches",
@@ -275,8 +279,10 @@ export const dictionary: Record<Lang, Dictionary> = {
     home: {
       searchPlaceholder: "ابحث عن مباراة، إدارة…",
       heading: "اكتشف المباريات التي تناسبك",
+      headingHighlight: "المباريات",
       subheading:
         "جميع المباريات العمومية بالمغرب في مكان واحد، مع الوثائق والمواعيد وأدوات التحضير الجيد.",
+      categories: ["الإدارة", "التعليم", "الصحة", "المالية", "الأمن", "الجماعات الترابية", "أخرى"],
       recent: "أحدث المباريات",
       seeAll: "عرض الكل",
       deadlinesNear: "آخر الآجال قريبا",
