@@ -79,6 +79,29 @@ export interface Dictionary {
     login: string;
     register: string;
     continueGuest: string;
+    connectedTitle: string;
+    logout: string;
+  };
+  auth: {
+    emailLabel: string;
+    passwordLabel: string;
+    newPasswordLabel: string;
+    registerTitle: string;
+    registerSubmit: string;
+    registerSwitch: string;
+    loginTitle: string;
+    loginSubmit: string;
+    loginSwitch: string;
+    forgotLink: string;
+    forgotTitle: string;
+    forgotSubmit: string;
+    backToLogin: string;
+    checkEmailTitle: string;
+    checkEmailDesc: string;
+    resetSentTitle: string;
+    resetSentDesc: string;
+    newPasswordTitle: string;
+    newPasswordSubmit: string;
   };
   common: {
     demoBadge: string;
@@ -172,6 +195,29 @@ export const dictionary: Record<Lang, Dictionary> = {
       login: "Se connecter",
       register: "Créer un compte",
       continueGuest: "Continuer sans compte",
+      connectedTitle: "Bonjour",
+      logout: "Se déconnecter",
+    },
+    auth: {
+      emailLabel: "Email",
+      passwordLabel: "Mot de passe",
+      newPasswordLabel: "Nouveau mot de passe",
+      registerTitle: "Créer un compte",
+      registerSubmit: "Créer mon compte",
+      registerSwitch: "Déjà un compte ? Se connecter",
+      loginTitle: "Se connecter",
+      loginSubmit: "Se connecter",
+      loginSwitch: "Pas encore de compte ? Créer un compte",
+      forgotLink: "Mot de passe oublié ?",
+      forgotTitle: "Mot de passe oublié",
+      forgotSubmit: "Envoyer le lien de réinitialisation",
+      backToLogin: "Retour à la connexion",
+      checkEmailTitle: "Vérifiez votre email",
+      checkEmailDesc: "Un lien de confirmation vous a été envoyé. Cliquez dessus pour activer votre compte.",
+      resetSentTitle: "Email envoyé",
+      resetSentDesc: "Si un compte existe avec cet email, un lien de réinitialisation vient d'être envoyé.",
+      newPasswordTitle: "Choisir un nouveau mot de passe",
+      newPasswordSubmit: "Enregistrer le nouveau mot de passe",
     },
     common: {
       demoBadge: "DEMO / DONNÉES FICTIVES",
@@ -262,6 +308,29 @@ export const dictionary: Record<Lang, Dictionary> = {
       login: "تسجيل الدخول",
       register: "إنشاء حساب",
       continueGuest: "المتابعة بدون حساب",
+      connectedTitle: "مرحبا",
+      logout: "تسجيل الخروج",
+    },
+    auth: {
+      emailLabel: "البريد الإلكتروني",
+      passwordLabel: "كلمة المرور",
+      newPasswordLabel: "كلمة مرور جديدة",
+      registerTitle: "إنشاء حساب",
+      registerSubmit: "إنشاء حسابي",
+      registerSwitch: "لديك حساب بالفعل؟ تسجيل الدخول",
+      loginTitle: "تسجيل الدخول",
+      loginSubmit: "تسجيل الدخول",
+      loginSwitch: "ليس لديك حساب؟ إنشاء حساب",
+      forgotLink: "نسيت كلمة المرور؟",
+      forgotTitle: "نسيت كلمة المرور",
+      forgotSubmit: "إرسال رابط إعادة التعيين",
+      backToLogin: "العودة لتسجيل الدخول",
+      checkEmailTitle: "تحقق من بريدك الإلكتروني",
+      checkEmailDesc: "تم إرسال رابط تأكيد إليك. اضغط عليه لتفعيل حسابك.",
+      resetSentTitle: "تم إرسال البريد",
+      resetSentDesc: "إذا كان هذا البريد مرتبطا بحساب، فقد تلقيت للتو رابط إعادة التعيين.",
+      newPasswordTitle: "اختر كلمة مرور جديدة",
+      newPasswordSubmit: "حفظ كلمة المرور الجديدة",
     },
     common: {
       demoBadge: "تجريبي / بيانات وهمية",
