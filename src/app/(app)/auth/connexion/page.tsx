@@ -7,6 +7,7 @@ import { AuthCard } from "@/components/layout/auth-card";
 import { Field } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
 import { signIn, type AuthActionState } from "@/modules/auth/actions";
+import { GoogleButton } from "@/modules/auth/google-button";
 
 const initialState: AuthActionState = { error: null };
 
@@ -16,6 +17,12 @@ export default function LoginPage() {
 
   return (
     <AuthCard title={t.auth.loginTitle}>
+      <GoogleButton label={t.auth.continueWithGoogle} />
+      <div className="my-4 flex items-center gap-3 text-xs text-[var(--color-text-muted)]">
+        <span className="h-px flex-1 bg-[var(--color-border)]" />
+        {t.auth.orSeparator}
+        <span className="h-px flex-1 bg-[var(--color-border)]" />
+      </div>
       <form action={formAction} className="space-y-4">
         <Field label={t.auth.emailLabel} type="email" name="email" required autoComplete="email" />
         <Field

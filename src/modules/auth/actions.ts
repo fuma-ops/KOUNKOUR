@@ -105,3 +105,22 @@ export async function signOut() {
   if (supabase) await supabase.auth.signOut();
   redirect("/");
 }
+
+// Auth sociale facultative (cahier §10). Nécessite que le provider Google soit
+// configuré dans Supabase (identifiants OAuth) — sinon Supabase renvoie une
+// erreur que l'on remonte à l'utilisateur.
+export async function signInWithGoogle(): Promise<AuthActionState> {
+  const supabase = await createClient();
+  if (!supabase) return { error: ENV_MISSING };
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: { redirectTo: `${getOrigin()}/auth/callback` },
+  });
+
+  if (error || !data?.url) {
+    return { error: "Connexion Google indisponible pour le moment." };
+  }
+
+  redirect(data.url);
+}

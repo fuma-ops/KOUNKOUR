@@ -127,6 +127,8 @@ export interface Dictionary {
     resetSentDesc: string;
     newPasswordTitle: string;
     newPasswordSubmit: string;
+    continueWithGoogle: string;
+    orSeparator: string;
   };
   common: {
     demoBadge: string;
@@ -269,6 +271,8 @@ export const dictionary: Record<Lang, Dictionary> = {
       resetSentDesc: "Si un compte existe avec cet email, un lien de réinitialisation vient d'être envoyé.",
       newPasswordTitle: "Choisir un nouveau mot de passe",
       newPasswordSubmit: "Enregistrer le nouveau mot de passe",
+      continueWithGoogle: "Continuer avec Google",
+      orSeparator: "ou",
     },
     common: {
       demoBadge: "DEMO / DONNÉES FICTIVES",
@@ -408,6 +412,8 @@ export const dictionary: Record<Lang, Dictionary> = {
       resetSentDesc: "إذا كان هذا البريد مرتبطا بحساب، فقد تلقيت للتو رابط إعادة التعيين.",
       newPasswordTitle: "اختر كلمة مرور جديدة",
       newPasswordSubmit: "حفظ كلمة المرور الجديدة",
+      continueWithGoogle: "المتابعة عبر Google",
+      orSeparator: "أو",
     },
     common: {
       demoBadge: "تجريبي / بيانات وهمية",
