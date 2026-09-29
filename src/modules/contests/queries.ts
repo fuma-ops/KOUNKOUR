@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { toContestView } from "./mapper";
-import type { ContestRow, ContestView } from "./types";
+import { isPubliclyVisible, type ContestRow, type ContestView } from "./types";
 
 // Accès aux données concours — toujours via ce module (contrat de données,
 // CLAUDE.md). Les lectures publiques sont filtrées par RLS côté serveur ;
@@ -19,6 +19,18 @@ export async function listPublicContestViews(): Promise<ContestView[]> {
     .order("created_at", { ascending: false });
   if (error) throw error;
   return (data ?? []).map(toContestView);
+}
+
+// Slugs des concours publiés (pour le sitemap). lastmod = updated_at (honnête).
+export async function listPublishedContestSlugs(): Promise<{ slug: string; updatedAt: string }[]> {
+  const supabase = await createClient();
+  if (!supabase) return [];
+  const { data, error } = await supabase.from("contests").select("slug, updated_at, status");
+  if (error) throw error;
+  // Filtre visibilité publique côté app aussi (la RLS le fait déjà côté base).
+  return (data ?? [])
+    .filter((c) => isPubliclyVisible(c.status))
+    .map((c) => ({ slug: c.slug, updatedAt: c.updated_at }));
 }
 
 export interface ContestDetail {

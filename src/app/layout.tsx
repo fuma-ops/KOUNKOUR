@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Tajawal } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n/language-provider";
+import { SITE_URL } from "@/lib/supabase/config";
 
 const interFr = Inter({ subsets: ["latin"], variable: "--font-sans-fr" });
 const tajawalAr = Tajawal({
@@ -11,8 +12,18 @@ const tajawalAr = Tajawal({
 });
 
 export const metadata: Metadata = {
-  title: "KounKour",
-  description: "Concours & Communauté Maroc",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "KounKour — Concours & Communauté Maroc",
+    template: "%s · KounKour",
+  },
+  description:
+    "Tous les concours publics du Maroc au même endroit : annonces officielles, documents, dates et outils de préparation.",
+  openGraph: {
+    siteName: "KounKour",
+    locale: "fr_MA",
+    type: "website",
+  },
 };
 
 // Applique le dir/lang mémorisé avant hydratation pour éviter un flash
