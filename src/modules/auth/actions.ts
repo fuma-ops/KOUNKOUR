@@ -2,14 +2,14 @@
 
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { SITE_URL } from "@/lib/supabase/config";
 
 export type AuthActionState = { error: string | null };
 
 const ENV_MISSING = "Service d'authentification indisponible : configuration serveur manquante.";
 
 function getOrigin(): string {
-  // Phase 2 : dev local uniquement (pas de déploiement public avant la Phase 7).
-  return process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  return SITE_URL;
 }
 
 export async function signUp(_prevState: AuthActionState, formData: FormData): Promise<AuthActionState> {

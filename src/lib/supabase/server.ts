@@ -1,27 +1,24 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import type { Database } from "./database.types";
+import { SUPABASE_ANON_KEY, SUPABASE_URL } from "./config";
 
-// True quand les variables d'environnement Supabase sont présentes. Permet aux
-// pages publiques de se rendre proprement (état invité) même si le déploiement
-// n'a pas encore ses variables configurées, plutôt que de planter en 500.
+// La config Supabase a toujours une valeur (env ou repli public) ; on garde ce
+// helper pour compatibilité avec le code appelant, désormais toujours vrai.
 export function hasSupabaseEnv(): boolean {
-  return Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+  return Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
 }
 
 // Client Supabase côté serveur (Server Components / Server Actions).
-// Retourne null si les variables d'environnement manquent — l'appelant doit
-// alors traiter l'utilisateur comme non connecté. Les échecs de setAll en
-// Server Component sont attendus (cookies en lecture seule) : le middleware
-// se charge du rafraîchissement de session.
+// Retourne null uniquement en cas de config vide (ne devrait plus arriver).
+// Les échecs de setAll en Server Component sont attendus (cookies en lecture
+// seule) : le middleware se charge du rafraîchissement de session.
 export async function createClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !anonKey) return null;
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) return null;
 
   const cookieStore = await cookies();
 
-  return createServerClient<Database>(url, anonKey, {
+  return createServerClient<Database>(SUPABASE_URL, SUPABASE_ANON_KEY, {
       cookies: {
         getAll() {
           return cookieStore.getAll();

@@ -1,24 +1,19 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { SUPABASE_ANON_KEY, SUPABASE_URL } from "./config";
 
 // Rafraîchit la session Supabase à chaque requête (nécessaire avec le
 // pattern App Router : les Server Components ne peuvent pas écrire de
 // cookies eux-mêmes).
 export async function updateSession(request: NextRequest) {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  // Variables d'environnement absentes (ex. déploiement pas encore
-  // configuré) : ne jamais planter le middleware — les pages publiques
-  // (concours, préparation, communauté) fonctionnent sans session, et le
-  // Profil affiche déjà correctement l'état invité.
-  if (!url || !anonKey) {
+  // Config vide (ne devrait plus arriver) : ne jamais planter le middleware.
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
     return NextResponse.next({ request });
   }
 
   let response = NextResponse.next({ request });
 
-  const supabase = createServerClient(url, anonKey, {
+  const supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     cookies: {
       getAll() {
         return request.cookies.getAll();
