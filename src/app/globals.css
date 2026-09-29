@@ -83,10 +83,10 @@ body {
         rgba(255, 246, 249, 0.94)
       ),
       url("/images/splash-desktop.png");
-    background-position: left -150px top -150px, right -150px top -150px,
-      left -150px bottom -150px, right -150px bottom -150px, center top,
+    background-position: left -200px top -200px, right -200px top -200px,
+      left -200px bottom -200px, right -200px bottom -200px, center top,
       center top;
-    background-size: 300px 300px, 300px 300px, 300px 300px, 300px 300px, cover,
+    background-size: 400px 400px, 400px 400px, 400px 400px, 400px 400px, cover,
       cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

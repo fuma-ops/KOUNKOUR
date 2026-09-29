@@ -1,12 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="presentation">
-  <!-- Khatam marocain (étoile à 8 branches + octogone) en bordeaux translucide.
-       Centré sur 100,100 : posé au centre d'un coin de l'écran, seul un quart
-       apparaît, formant un motif d'angle. -->
-  <g fill="none" stroke="#8d174b" stroke-linejoin="round">
-    <path d="M 100.00,5.00 L 122.20,46.41 L 167.18,32.82 L 153.59,77.80 L 195.00,100.00 L 153.59,122.20 L 167.18,167.18 L 122.20,153.59 L 100.00,195.00 L 77.80,153.59 L 32.82,167.18 L 46.41,122.20 L 5.00,100.00 L 46.41,77.80 L 32.82,32.82 L 77.80,46.41 Z" stroke-width="4" opacity="0.9" />
-    <path d="M 100.00,30.00 L 115.31,63.04 L 149.50,50.50 L 136.96,84.69 L 170.00,100.00 L 136.96,115.31 L 149.50,149.50 L 115.31,136.96 L 100.00,170.00 L 84.69,136.96 L 50.50,149.50 L 63.04,115.31 L 30.00,100.00 L 63.04,84.69 L 50.50,50.50 L 84.69,63.04 Z" stroke-width="3" opacity="0.7" />
-    <path d="M 131.41,113.01 L 113.01,131.41 L 86.99,131.41 L 68.59,113.01 L 68.59,86.99 L 86.99,68.59 L 113.01,68.59 L 131.41,86.99 Z" stroke-width="3" opacity="0.85" />
-    <circle cx="100" cy="100" r="13" stroke-width="3" opacity="0.85" />
-    <circle cx="100" cy="100" r="4" fill="#8d174b" stroke="none" opacity="0.9" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="presentation">
+  <!-- Treillis zellige marocain (étoiles à 8 branches + petites étoiles) répété,
+       en bordeaux, fondu radialement pour se fondre dans le fond. Centré sur un
+       coin de l'écran : seul un quart apparaît, dense au coin puis estompé vers
+       le contenu. -->
+  <defs>
+    <pattern id="zellige" width="64" height="64" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#8d174b" stroke-width="2" stroke-linejoin="round">
+        <path d="M 32.00,0.00 L 39.08,14.91 L 54.63,9.37 L 49.09,24.92 L 64.00,32.00 L 49.09,39.08 L 54.63,54.63 L 39.08,49.09 L 32.00,64.00 L 24.92,49.09 L 9.37,54.63 L 14.91,39.08 L 0.00,32.00 L 14.91,24.92 L 9.37,9.37 L 24.92,14.91 Z" />
+        <path d="M 43.09,36.59 L 36.59,43.09 L 27.41,43.09 L 20.91,36.59 L 20.91,27.41 L 27.41,20.91 L 36.59,20.91 L 43.09,27.41 Z" />
+        <path transform="translate(0,0)" d="M 0.00,-9.00 L 2.55,-2.55 L 9.00,0.00 L 2.55,2.55 L 0.00,9.00 L -2.55,2.55 L -9.00,0.00 L -2.55,-2.55 Z" />
+        <path transform="translate(64,0)" d="M 0.00,-9.00 L 2.55,-2.55 L 9.00,0.00 L 2.55,2.55 L 0.00,9.00 L -2.55,2.55 L -9.00,0.00 L -2.55,-2.55 Z" />
+        <path transform="translate(0,64)" d="M 0.00,-9.00 L 2.55,-2.55 L 9.00,0.00 L 2.55,2.55 L 0.00,9.00 L -2.55,2.55 L -9.00,0.00 L -2.55,-2.55 Z" />
+        <path transform="translate(64,64)" d="M 0.00,-9.00 L 2.55,-2.55 L 9.00,0.00 L 2.55,2.55 L 0.00,9.00 L -2.55,2.55 L -9.00,0.00 L -2.55,-2.55 Z" />
+      </g>
+    </pattern>
+    <radialGradient id="fade" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="1" />
+      <stop offset="48%" stop-color="#fff" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+    </radialGradient>
+    <mask id="m"><rect width="400" height="400" fill="url(#fade)" /></mask>
+  </defs>
+  <g mask="url(#m)" opacity="0.4">
+    <rect width="400" height="400" fill="url(#zellige)" />
   </g>
 </svg>
