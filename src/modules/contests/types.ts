@@ -32,6 +32,34 @@ export const CONTEST_STATUS_LABELS_FR: Record<ContestStatus, string> = {
   archive: "Archivé",
 };
 
+// Forme bilingue consommée par les composants publics (carte, fiche).
+export interface Bilingual {
+  fr: string;
+  ar: string;
+}
+
+// View-model d'un concours pour l'affichage public. Découple les composants du
+// schéma DB brut (contrat de données) : une seule fonction de mapping produit
+// cette forme, les composants n'accèdent jamais aux colonnes directement.
+export interface ContestView {
+  slug: string;
+  administration: Bilingual;
+  title: Bilingual;
+  diploma: Bilingual | null;
+  positions: number | null;
+  region: Bilingual | null;
+  status: DisplayStatus;
+  deadlineISO: string | null;
+  openingISO: string | null;
+  publishedISO: string | null;
+  verifiedISO: string | null;
+  summary: Bilingual | null;
+  sourceUrl: string;
+  sourceOrg: string | null;
+  applyUrl: string | null;
+  reference: string | null;
+}
+
 export function isPubliclyVisible(status: ContestStatus): boolean {
   return (
     status === "publie" ||

@@ -5,9 +5,7 @@ import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/language-provider";
 import { SectionHeading } from "@/components/ui/states";
 import { DemoBadge } from "@/components/ui/badge";
-import { ContestCard } from "@/modules/contests/contest-card";
-import { demoContests } from "@/modules/contests/demo-data";
-import { daysUntil } from "@/lib/local-date";
+import { HomeContestSections } from "@/modules/contests/home-contest-sections";
 
 // Icônes décoratives des catégories du hero (annexe §3 — pastilles avec icône).
 // Rendu direct, sans passer par un composant réutilisable : usage unique à
@@ -26,12 +24,6 @@ export default function Home() {
   const { t, lang } = useLanguage();
 
   const headingParts = t.home.heading.split(t.home.headingHighlight);
-
-  const recent = demoContests.slice(0, 2);
-  const deadlinesNear = [...demoContests]
-    .filter((c) => c.status !== "closed")
-    .sort((a, b) => daysUntil(a.deadlineISO) - daysUntil(b.deadlineISO))
-    .slice(0, 2);
 
   return (
     <>
@@ -147,33 +139,7 @@ export default function Home() {
       </section>
 
       <div className="mx-auto max-w-6xl px-4 py-8">
-        <section className="mt-8">
-          <div className="mb-3 flex items-center justify-between">
-            <SectionHeading>{t.home.recent}</SectionHeading>
-            <Link href="/concours" className="text-sm font-medium text-[var(--color-primary)]">
-              {t.home.seeAll}
-            </Link>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {recent.map((contest) => (
-              <ContestCard key={contest.slug} contest={contest} />
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-8">
-          <div className="mb-3 flex items-center justify-between">
-            <SectionHeading>{t.home.deadlinesNear}</SectionHeading>
-            <Link href="/concours" className="text-sm font-medium text-[var(--color-primary)]">
-              {t.home.seeAll}
-            </Link>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {deadlinesNear.map((contest) => (
-              <ContestCard key={contest.slug} contest={contest} />
-            ))}
-          </div>
-        </section>
+        <HomeContestSections />
 
         <section className="mt-10">
           <SectionHeading>{t.home.whyTitle}</SectionHeading>

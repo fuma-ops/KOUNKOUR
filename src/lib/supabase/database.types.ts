@@ -208,6 +208,7 @@ export type Database = {
           diploma_fr: string | null;
           exam_date: string | null;
           id: string;
+          opening_date: string | null;
           positions: number | null;
           published_at: string | null;
           reference: string | null;
@@ -236,6 +237,7 @@ export type Database = {
           diploma_fr?: string | null;
           exam_date?: string | null;
           id?: string;
+          opening_date?: string | null;
           positions?: number | null;
           published_at?: string | null;
           reference?: string | null;
@@ -264,6 +266,7 @@ export type Database = {
           diploma_fr?: string | null;
           exam_date?: string | null;
           id?: string;
+          opening_date?: string | null;
           positions?: number | null;
           published_at?: string | null;
           reference?: string | null;

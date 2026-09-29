@@ -1,29 +1,95 @@
 import { createClient } from "@/lib/supabase/server";
-import type { ContestRow } from "./types";
+import { toContestView } from "./mapper";
+import type { ContestRow, ContestView } from "./types";
 
 // Accès aux données concours — toujours via ce module (contrat de données,
 // CLAUDE.md). Les lectures publiques sont filtrées par RLS côté serveur ;
 // les lectures/écritures staff supposent un rôle éditeur/administrateur
 // (vérifié aussi par RLS).
 
-export async function listPublicContests(): Promise<ContestRow[]> {
+const CONTEST_WITH_ADMIN = "*, administrations ( name_fr, name_ar )";
+
+export async function listPublicContestViews(): Promise<ContestView[]> {
   const supabase = await createClient();
   if (!supabase) return [];
   const { data, error } = await supabase
     .from("contests")
-    .select("*")
+    .select(CONTEST_WITH_ADMIN)
     .order("published_at", { ascending: false, nullsFirst: false })
     .order("created_at", { ascending: false });
   if (error) throw error;
-  return data ?? [];
+  return (data ?? []).map(toContestView);
 }
 
-export async function getContestBySlug(slug: string): Promise<ContestRow | null> {
+export interface ContestDetail {
+  view: ContestView;
+  criteria: {
+    id: string;
+    type: string;
+    value: { fr: string; ar: string };
+    sourceExcerpt: string | null;
+    verification: string;
+  }[];
+  documents: {
+    id: string;
+    title: { fr: string; ar: string };
+    docType: string;
+    url: string;
+    format: string | null;
+    sizeKb: number | null;
+    sourceLabel: string | null;
+    publishedISO: string | null;
+  }[];
+}
+
+export async function getContestDetailBySlug(slug: string): Promise<ContestDetail | null> {
   const supabase = await createClient();
   if (!supabase) return null;
-  const { data, error } = await supabase.from("contests").select("*").eq("slug", slug).maybeSingle();
+
+  const { data: row, error } = await supabase
+    .from("contests")
+    .select(CONTEST_WITH_ADMIN)
+    .eq("slug", slug)
+    .maybeSingle();
   if (error) throw error;
-  return data;
+  if (!row) return null;
+
+  const [{ data: criteria }, { data: documents }] = await Promise.all([
+    supabase
+      .from("contest_criteria")
+      .select("*")
+      .eq("contest_id", row.id)
+      .order("position", { ascending: true }),
+    supabase
+      .from("contest_documents")
+      .select("*")
+      .eq("contest_id", row.id)
+      .order("position", { ascending: true }),
+  ]);
+
+  return {
+    view: toContestView(row),
+    criteria: (criteria ?? []).map((c) => ({
+      id: c.id,
+      type: c.criterion_type,
+      value: { fr: c.value_fr ?? c.value_ar ?? "", ar: c.value_ar ?? c.value_fr ?? "" },
+      sourceExcerpt: c.source_excerpt,
+      verification: c.verification_state,
+    })),
+    documents: (documents ?? []).map((d) => ({
+      id: d.id,
+      title: {
+        fr: d.title_fr ?? d.title_ar ?? d.doc_type,
+        ar: d.title_ar ?? d.title_fr ?? d.doc_type,
+      },
+      docType: d.doc_type,
+      url: d.url,
+      format: d.format,
+      sizeKb: d.size_kb,
+      sourceLabel: d.source_label,
+      publishedISO: d.created_at,
+    })),
+  };
 }
 
 // Back-office : tous les concours quel que soit le statut (RLS staff requis).
@@ -44,6 +110,27 @@ export async function getContestByIdForStaff(id: string): Promise<ContestRow | n
   const { data, error } = await supabase.from("contests").select("*").eq("id", id).maybeSingle();
   if (error) throw error;
   return data;
+}
+
+// Favori : le concours est-il en favori pour l'utilisateur courant ?
+export async function isContestBookmarked(slug: string): Promise<boolean> {
+  const supabase = await createClient();
+  if (!supabase) return false;
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) return false;
+
+  const { data: contest } = await supabase.from("contests").select("id").eq("slug", slug).maybeSingle();
+  if (!contest) return false;
+
+  const { data } = await supabase
+    .from("contest_bookmarks")
+    .select("contest_id")
+    .eq("user_id", user.id)
+    .eq("contest_id", contest.id)
+    .maybeSingle();
+  return Boolean(data);
 }
 
 // Rôle de l'utilisateur courant (null si non connecté ou env absent).
