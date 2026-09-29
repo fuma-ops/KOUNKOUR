@@ -60,6 +60,42 @@ body {
   color: var(--color-text);
 }
 
+/*
+  Décor de fond — la photo de Rabat de l'écran de démarrage, recouverte d'un
+  voile rose clair pour l'adoucir et garder le contenu lisible. Uniquement sur
+  desktop (≥ md), posée sur <html> en position fixe : elle reste en toile de
+  fond pendant le défilement, les pages transparentes la laissent apparaître
+  dans les gouttières et les cartes blanches flottent par-dessus. Sur mobile,
+  on garde le fond clair uni pour la lisibilité et la légèreté.
+*/
+@media (min-width: 768px) {
+  html {
+    background-color: var(--color-background);
+    /* Ordre des couches (haut → bas) : 4 khatam bordeaux dans les coins, puis le
+       voile rose, puis la photo de Rabat. Chaque khatam est centré sur un coin,
+       seul un quart apparaît → motif d'angle marocain. */
+    background-image: url("/images/zellige-corner.svg"),
+      url("/images/zellige-corner.svg"), url("/images/zellige-corner.svg"),
+      url("/images/zellige-corner.svg"),
+      linear-gradient(
+        to bottom,
+        rgba(251, 214, 226, 0.82),
+        rgba(255, 246, 249, 0.94)
+      ),
+      url("/images/splash-desktop.png");
+    background-position: left -200px top -200px, right -200px top -200px,
+      left -200px bottom -200px, right -200px bottom -200px, center top,
+      center top;
+    background-size: 400px 400px, 400px 400px, 400px 400px, 400px 400px, cover,
+      cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  body {
+    background: transparent;
+  }
+}
+
 /* Respecte prefers-reduced-motion — annexe §6 */
 @media (prefers-reduced-motion: reduce) {
   *,

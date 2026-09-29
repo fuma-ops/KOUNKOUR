@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="presentation">
+  <!-- Treillis zellige marocain (étoiles à 8 branches + petites étoiles) répété,
+       en bordeaux, fondu radialement pour se fondre dans le fond. Centré sur un
+       coin de l'écran : seul un quart apparaît, dense au coin puis estompé vers
+       le contenu. -->
+  <defs>
+    <pattern id="zellige" width="64" height="64" patternUnits="userSpaceOnUse">
+      <g fill="none" stroke="#8d174b" stroke-width="2" stroke-linejoin="round">
+        <path d="M 32.00,0.00 L 39.08,14.91 L 54.63,9.37 L 49.09,24.92 L 64.00,32.00 L 49.09,39.08 L 54.63,54.63 L 39.08,49.09 L 32.00,64.00 L 24.92,49.09 L 9.37,54.63 L 14.91,39.08 L 0.00,32.00 L 14.91,24.92 L 9.37,9.37 L 24.92,14.91 Z" />
+        <path d="M 43.09,36.59 L 36.59,43.09 L 27.41,43.09 L 20.91,36.59 L 20.91,27.41 L 27.41,20.91 L 36.59,20.91 L 43.09,27.41 Z" />
+        <path transform="translate(0,0)" d="M 0.00,-9.00 L 2.55,-2.55 L 9.00,0.00 L 2.55,2.55 L 0.00,9.00 L -2.55,2.55 L -9.00,0.00 L -2.55,-2.55 Z" />
+        <path transform="translate(64,0)" d="M 0.00,-9.00 L 2.55,-2.55 L 9.00,0.00 L 2.55,2.55 L 0.00,9.00 L -2.55,2.55 L -9.00,0.00 L -2.55,-2.55 Z" />
+        <path transform="translate(0,64)" d="M 0.00,-9.00 L 2.55,-2.55 L 9.00,0.00 L 2.55,2.55 L 0.00,9.00 L -2.55,2.55 L -9.00,0.00 L -2.55,-2.55 Z" />
+        <path transform="translate(64,64)" d="M 0.00,-9.00 L 2.55,-2.55 L 9.00,0.00 L 2.55,2.55 L 0.00,9.00 L -2.55,2.55 L -9.00,0.00 L -2.55,-2.55 Z" />
+      </g>
+    </pattern>
+    <radialGradient id="fade" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="1" />
+      <stop offset="48%" stop-color="#fff" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+    </radialGradient>
+    <mask id="m"><rect width="400" height="400" fill="url(#fade)" /></mask>
+  </defs>
+  <g mask="url(#m)" opacity="0.4">
+    <rect width="400" height="400" fill="url(#zellige)" />
+  </g>
+</svg>
