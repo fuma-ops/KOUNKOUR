@@ -331,6 +331,39 @@ export type Database = {
         };
         Relationships: [];
       };
+      smart_match_preferences: {
+        Row: {
+          user_id: string;
+          diploma_level: number | null;
+          specialty: string | null;
+          region: string | null;
+          domain: string | null;
+          match_consent: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          user_id: string;
+          diploma_level?: number | null;
+          specialty?: string | null;
+          region?: string | null;
+          domain?: string | null;
+          match_consent?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          user_id?: string;
+          diploma_level?: number | null;
+          specialty?: string | null;
+          region?: string | null;
+          domain?: string | null;
+          match_consent?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
       user_roles: {
         Row: {
           created_at: string;

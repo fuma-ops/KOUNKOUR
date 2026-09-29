@@ -22,7 +22,12 @@ export function ProfileView({ session }: ProfileViewProps) {
           {t.profile.connectedTitle} {session.displayName || session.email}
         </h1>
         <p className="text-sm text-[var(--color-text-muted)]">{session.email}</p>
-        <form action={signOut} className="mt-2 w-full">
+        <Link href="/profil/smart-match" className="mt-2 w-full">
+          <Button variant="primary" className="w-full">
+            {t.smartMatch.navLabel}
+          </Button>
+        </Link>
+        <form action={signOut} className="w-full">
           <Button type="submit" variant="secondary" className="w-full">
             {t.profile.logout}
           </Button>

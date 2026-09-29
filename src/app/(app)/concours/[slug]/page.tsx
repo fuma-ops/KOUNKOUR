@@ -3,6 +3,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getContestDetailBySlug, isContestBookmarked } from "@/modules/contests/queries";
 import { ContestDetailView } from "@/modules/contests/contest-detail-view";
+import { MatchPanel } from "@/modules/smart-match/match-panel";
+import { getMyPreferences, toMatchProfile } from "@/modules/smart-match/preferences";
+import { evaluateMatch, type MatchResult } from "@/modules/smart-match/rules";
+import { createClient } from "@/lib/supabase/server";
+import { todayLocalISO } from "@/lib/local-date";
 import { SITE_URL } from "@/lib/supabase/config";
 
 // Mémoïse la lecture pour éviter un double appel entre generateMetadata et la page.
@@ -71,6 +76,33 @@ export default async function ContestDetailPage({ params }: PageProps<"/concours
   const bookmarked = await isContestBookmarked(slug);
   const ld = jobPostingLd(detail);
 
+  // Smart Match : panneau affiché uniquement à un utilisateur connecté.
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = supabase ? await supabase.auth.getUser() : { data: { user: null } };
+
+  let matchResult: MatchResult | null = null;
+  let showMatch = false;
+  if (user) {
+    showMatch = true;
+    const profile = toMatchProfile(await getMyPreferences());
+    if (profile) {
+      const { view } = detail;
+      matchResult = evaluateMatch(
+        profile,
+        {
+          diplomaText: view.diploma?.fr ?? null,
+          regionText: view.region?.fr ?? null,
+          title: view.title.fr,
+          deadlineISO: view.deadlineISO,
+          status: view.status === "closed" ? "cloture" : "publie",
+        },
+        todayLocalISO()
+      );
+    }
+  }
+
   return (
     <>
       {ld && (
@@ -80,6 +112,11 @@ export default async function ContestDetailPage({ params }: PageProps<"/concours
         />
       )}
       <ContestDetailView detail={detail} initiallyBookmarked={bookmarked} />
+      {showMatch && (
+        <div className="mx-auto max-w-4xl px-4 pb-28">
+          <MatchPanel result={matchResult} />
+        </div>
+      )}
     </>
   );
 }

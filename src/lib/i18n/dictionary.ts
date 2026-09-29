@@ -107,6 +107,28 @@ export interface Dictionary {
     connectedTitle: string;
     logout: string;
   };
+  smartMatch: {
+    navLabel: string;
+    formTitle: string;
+    formIntro: string;
+    diplomaLabel: string;
+    diplomaNone: string;
+    specialtyLabel: string;
+    regionLabel: string;
+    domainLabel: string;
+    consentLabel: string;
+    save: string;
+    saved: string;
+    deleteProfile: string;
+    panelTitle: string;
+    groupMatch: string;
+    groupVerify: string;
+    groupNoMatch: string;
+    disclaimer: string;
+    noProfile: string;
+    editProfile: string;
+    diplomaLevels: { label: string; value: string }[];
+  };
   auth: {
     emailLabel: string;
     passwordLabel: string;
@@ -251,6 +273,36 @@ export const dictionary: Record<Lang, Dictionary> = {
       connectedTitle: "Bonjour",
       logout: "Se déconnecter",
     },
+    smartMatch: {
+      navLabel: "Ma correspondance",
+      formTitle: "Mon profil de correspondance",
+      formIntro:
+        "Renseignez quelques informations facultatives pour estimer votre correspondance avec les concours. Vous pouvez tout modifier ou supprimer à tout moment.",
+      diplomaLabel: "Niveau de diplôme",
+      diplomaNone: "Non renseigné",
+      specialtyLabel: "Spécialité",
+      regionLabel: "Région préférée",
+      domainLabel: "Domaine / secteur",
+      consentLabel: "Utiliser ces informations pour estimer ma correspondance",
+      save: "Enregistrer",
+      saved: "Préférences enregistrées.",
+      deleteProfile: "Supprimer mon profil de correspondance",
+      panelTitle: "Ma correspondance",
+      groupMatch: "Correspondance apparente",
+      groupVerify: "À vérifier",
+      groupNoMatch: "Ne correspond pas",
+      disclaimer:
+        "Cette estimation ne remplace pas la lecture de l'annonce officielle ; l'organisme recruteur décide de l'admissibilité.",
+      noProfile: "Renseignez votre profil pour estimer votre correspondance avec ce concours.",
+      editProfile: "Renseigner mon profil",
+      diplomaLevels: [
+        { label: "Baccalauréat", value: "0" },
+        { label: "Bac +2", value: "2" },
+        { label: "Bac +3 (Licence)", value: "3" },
+        { label: "Bac +5 (Master/Ingénieur)", value: "5" },
+        { label: "Bac +8 (Doctorat)", value: "8" },
+      ],
+    },
     auth: {
       emailLabel: "Email",
       passwordLabel: "Mot de passe",
@@ -391,6 +443,36 @@ export const dictionary: Record<Lang, Dictionary> = {
       continueGuest: "المتابعة بدون حساب",
       connectedTitle: "مرحبا",
       logout: "تسجيل الخروج",
+    },
+    smartMatch: {
+      navLabel: "مدى تطابقي",
+      formTitle: "ملف التطابق الخاص بي",
+      formIntro:
+        "أدخل بعض المعلومات الاختيارية لتقدير مدى تطابقك مع المباريات. يمكنك التعديل أو الحذف في أي وقت.",
+      diplomaLabel: "مستوى الدبلوم",
+      diplomaNone: "غير محدد",
+      specialtyLabel: "التخصص",
+      regionLabel: "الجهة المفضلة",
+      domainLabel: "المجال / القطاع",
+      consentLabel: "استخدام هذه المعلومات لتقدير مدى تطابقي",
+      save: "حفظ",
+      saved: "تم حفظ التفضيلات.",
+      deleteProfile: "حذف ملف التطابق الخاص بي",
+      panelTitle: "مدى تطابقي",
+      groupMatch: "تطابق ظاهر",
+      groupVerify: "يجب التحقق",
+      groupNoMatch: "لا يتطابق",
+      disclaimer:
+        "هذا التقدير لا يغني عن قراءة الإعلان الرسمي؛ الجهة المشغّلة هي من يقرر الأهلية.",
+      noProfile: "أدخل ملفك لتقدير مدى تطابقك مع هذه المباراة.",
+      editProfile: "إدخال ملفي",
+      diplomaLevels: [
+        { label: "الباكالوريا", value: "0" },
+        { label: "باك +2", value: "2" },
+        { label: "باك +3 (إجازة)", value: "3" },
+        { label: "باك +5 (ماستر/مهندس)", value: "5" },
+        { label: "باك +8 (دكتوراه)", value: "8" },
+      ],
     },
     auth: {
       emailLabel: "البريد الإلكتروني",
