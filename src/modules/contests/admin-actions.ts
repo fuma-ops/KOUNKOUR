@@ -22,6 +22,7 @@ function slugify(input: string): string {
 // une autorisation basée sur le seul contrôle frontend).
 async function requireEditor() {
   const supabase = await createClient();
+  if (!supabase) throw new Error("Configuration serveur manquante (Supabase).");
   const {
     data: { user },
   } = await supabase.auth.getUser();

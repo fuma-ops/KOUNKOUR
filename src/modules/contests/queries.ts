@@ -8,6 +8,7 @@ import type { ContestRow } from "./types";
 
 export async function listPublicContests(): Promise<ContestRow[]> {
   const supabase = await createClient();
+  if (!supabase) return [];
   const { data, error } = await supabase
     .from("contests")
     .select("*")
@@ -19,6 +20,7 @@ export async function listPublicContests(): Promise<ContestRow[]> {
 
 export async function getContestBySlug(slug: string): Promise<ContestRow | null> {
   const supabase = await createClient();
+  if (!supabase) return null;
   const { data, error } = await supabase.from("contests").select("*").eq("slug", slug).maybeSingle();
   if (error) throw error;
   return data;
@@ -27,6 +29,7 @@ export async function getContestBySlug(slug: string): Promise<ContestRow | null>
 // Back-office : tous les concours quel que soit le statut (RLS staff requis).
 export async function listAllContestsForStaff(): Promise<ContestRow[]> {
   const supabase = await createClient();
+  if (!supabase) return [];
   const { data, error } = await supabase
     .from("contests")
     .select("*")
@@ -37,14 +40,16 @@ export async function listAllContestsForStaff(): Promise<ContestRow[]> {
 
 export async function getContestByIdForStaff(id: string): Promise<ContestRow | null> {
   const supabase = await createClient();
+  if (!supabase) return null;
   const { data, error } = await supabase.from("contests").select("*").eq("id", id).maybeSingle();
   if (error) throw error;
   return data;
 }
 
-// Rôle de l'utilisateur courant (null si non connecté).
+// Rôle de l'utilisateur courant (null si non connecté ou env absent).
 export async function getCurrentUserRole(): Promise<string | null> {
   const supabase = await createClient();
+  if (!supabase) return null;
   const {
     data: { user },
   } = await supabase.auth.getUser();

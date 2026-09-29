@@ -5,6 +5,8 @@ import { createClient } from "@/lib/supabase/server";
 
 export type AuthActionState = { error: string | null };
 
+const ENV_MISSING = "Service d'authentification indisponible : configuration serveur manquante.";
+
 function getOrigin(): string {
   // Phase 2 : dev local uniquement (pas de déploiement public avant la Phase 7).
   return process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
@@ -22,6 +24,7 @@ export async function signUp(_prevState: AuthActionState, formData: FormData): P
   }
 
   const supabase = await createClient();
+  if (!supabase) return { error: ENV_MISSING };
   const { error } = await supabase.auth.signUp({
     email,
     password,
@@ -44,6 +47,7 @@ export async function signIn(_prevState: AuthActionState, formData: FormData): P
   }
 
   const supabase = await createClient();
+  if (!supabase) return { error: ENV_MISSING };
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) {
@@ -63,6 +67,7 @@ export async function requestPasswordReset(
   }
 
   const supabase = await createClient();
+  if (!supabase) return { error: ENV_MISSING };
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${getOrigin()}/auth/nouveau-mot-de-passe`,
   });
@@ -85,6 +90,7 @@ export async function updatePassword(
   }
 
   const supabase = await createClient();
+  if (!supabase) return { error: ENV_MISSING };
   const { error } = await supabase.auth.updateUser({ password });
 
   if (error) {
@@ -96,6 +102,6 @@ export async function updatePassword(
 
 export async function signOut() {
   const supabase = await createClient();
-  await supabase.auth.signOut();
+  if (supabase) await supabase.auth.signOut();
   redirect("/");
 }
