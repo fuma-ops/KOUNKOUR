@@ -61,16 +61,22 @@ body {
 }
 
 /*
-  Décor de fond « floraison rose de Marrakech » — uniquement sur desktop
-  (≥ md). Posé sur <html> (le canvas) en position fixe : il reste en toile de
-  fond pendant le défilement, les pages transparentes le laissent apparaître
+  Décor de fond — la photo de Rabat de l'écran de démarrage, recouverte d'un
+  voile rose clair pour l'adoucir et garder le contenu lisible. Uniquement sur
+  desktop (≥ md), posée sur <html> en position fixe : elle reste en toile de
+  fond pendant le défilement, les pages transparentes la laissent apparaître
   dans les gouttières et les cartes blanches flottent par-dessus. Sur mobile,
   on garde le fond clair uni pour la lisibilité et la légèreté.
 */
 @media (min-width: 768px) {
   html {
     background-color: var(--color-background);
-    background-image: url("/images/bg-blossom.svg");
+    background-image: linear-gradient(
+        to bottom,
+        rgba(251, 214, 226, 0.82),
+        rgba(255, 246, 249, 0.94)
+      ),
+      url("/images/splash-desktop.png");
     background-position: center top;
     background-size: cover;
     background-repeat: no-repeat;
