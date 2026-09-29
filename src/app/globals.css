@@ -71,14 +71,23 @@ body {
 @media (min-width: 768px) {
   html {
     background-color: var(--color-background);
-    background-image: linear-gradient(
+    /* Ordre des couches (haut → bas) : 4 khatam bordeaux dans les coins, puis le
+       voile rose, puis la photo de Rabat. Chaque khatam est centré sur un coin,
+       seul un quart apparaît → motif d'angle marocain. */
+    background-image: url("/images/zellige-corner.svg"),
+      url("/images/zellige-corner.svg"), url("/images/zellige-corner.svg"),
+      url("/images/zellige-corner.svg"),
+      linear-gradient(
         to bottom,
         rgba(251, 214, 226, 0.82),
         rgba(255, 246, 249, 0.94)
       ),
       url("/images/splash-desktop.png");
-    background-position: center top;
-    background-size: cover;
+    background-position: left -150px top -150px, right -150px top -150px,
+      left -150px bottom -150px, right -150px bottom -150px, center top,
+      center top;
+    background-size: 300px 300px, 300px 300px, 300px 300px, 300px 300px, cover,
+      cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
   }
