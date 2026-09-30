@@ -385,6 +385,216 @@ export type Database = {
         };
         Relationships: [];
       };
+      radar_sources: {
+        Row: {
+          active: boolean;
+          base_url: string;
+          category: string | null;
+          created_at: string;
+          domain: string;
+          id: string;
+          min_delay_seconds: number;
+          name_ar: string | null;
+          name_fr: string;
+          notes: string | null;
+          robots_allowed: boolean | null;
+          robots_checked: boolean;
+          slug: string;
+          tos_url: string | null;
+          updated_at: string;
+        };
+        Insert: {
+          active?: boolean;
+          base_url: string;
+          category?: string | null;
+          created_at?: string;
+          domain: string;
+          id?: string;
+          min_delay_seconds?: number;
+          name_ar?: string | null;
+          name_fr: string;
+          notes?: string | null;
+          robots_allowed?: boolean | null;
+          robots_checked?: boolean;
+          slug: string;
+          tos_url?: string | null;
+          updated_at?: string;
+        };
+        Update: {
+          active?: boolean;
+          base_url?: string;
+          category?: string | null;
+          created_at?: string;
+          domain?: string;
+          id?: string;
+          min_delay_seconds?: number;
+          name_ar?: string | null;
+          name_fr?: string;
+          notes?: string | null;
+          robots_allowed?: boolean | null;
+          robots_checked?: boolean;
+          slug?: string;
+          tos_url?: string | null;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      radar_runs: {
+        Row: {
+          created_at: string;
+          error_message: string | null;
+          finished_at: string | null;
+          id: string;
+          items_detected: number;
+          items_new: number;
+          source_id: string;
+          started_at: string;
+          status: Database["public"]["Enums"]["radar_run_status"];
+          trigger: string;
+        };
+        Insert: {
+          created_at?: string;
+          error_message?: string | null;
+          finished_at?: string | null;
+          id?: string;
+          items_detected?: number;
+          items_new?: number;
+          source_id: string;
+          started_at?: string;
+          status?: Database["public"]["Enums"]["radar_run_status"];
+          trigger?: string;
+        };
+        Update: {
+          created_at?: string;
+          error_message?: string | null;
+          finished_at?: string | null;
+          id?: string;
+          items_detected?: number;
+          items_new?: number;
+          source_id?: string;
+          started_at?: string;
+          status?: Database["public"]["Enums"]["radar_run_status"];
+          trigger?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "radar_runs_source_id_fkey";
+            columns: ["source_id"];
+            isOneToOne: false;
+            referencedRelation: "radar_sources";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      radar_candidates: {
+        Row: {
+          administration_category: string | null;
+          administration_name: string | null;
+          administration_site: string | null;
+          created_at: string;
+          deadline_date: string | null;
+          deadline_text: string | null;
+          degree_level: string | null;
+          external_id: string | null;
+          id: string;
+          imported_contest_id: string | null;
+          positions: number | null;
+          publication_text: string | null;
+          raw: Json;
+          region: string | null;
+          review_notes: string | null;
+          reviewed_at: string | null;
+          reviewed_by: string | null;
+          run_id: string | null;
+          scraped_at: string;
+          source_id: string;
+          source_url: string;
+          specialty: string | null;
+          status: Database["public"]["Enums"]["radar_candidate_status"];
+          title_ar: string | null;
+          title_original: string;
+          updated_at: string;
+        };
+        Insert: {
+          administration_category?: string | null;
+          administration_name?: string | null;
+          administration_site?: string | null;
+          created_at?: string;
+          deadline_date?: string | null;
+          deadline_text?: string | null;
+          degree_level?: string | null;
+          external_id?: string | null;
+          id?: string;
+          imported_contest_id?: string | null;
+          positions?: number | null;
+          publication_text?: string | null;
+          raw?: Json;
+          region?: string | null;
+          review_notes?: string | null;
+          reviewed_at?: string | null;
+          reviewed_by?: string | null;
+          run_id?: string | null;
+          scraped_at?: string;
+          source_id: string;
+          source_url: string;
+          specialty?: string | null;
+          status?: Database["public"]["Enums"]["radar_candidate_status"];
+          title_ar?: string | null;
+          title_original: string;
+          updated_at?: string;
+        };
+        Update: {
+          administration_category?: string | null;
+          administration_name?: string | null;
+          administration_site?: string | null;
+          created_at?: string;
+          deadline_date?: string | null;
+          deadline_text?: string | null;
+          degree_level?: string | null;
+          external_id?: string | null;
+          id?: string;
+          imported_contest_id?: string | null;
+          positions?: number | null;
+          publication_text?: string | null;
+          raw?: Json;
+          region?: string | null;
+          review_notes?: string | null;
+          reviewed_at?: string | null;
+          reviewed_by?: string | null;
+          run_id?: string | null;
+          scraped_at?: string;
+          source_id?: string;
+          source_url?: string;
+          specialty?: string | null;
+          status?: Database["public"]["Enums"]["radar_candidate_status"];
+          title_ar?: string | null;
+          title_original?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "radar_candidates_imported_contest_id_fkey";
+            columns: ["imported_contest_id"];
+            isOneToOne: false;
+            referencedRelation: "contests";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "radar_candidates_run_id_fkey";
+            columns: ["run_id"];
+            isOneToOne: false;
+            referencedRelation: "radar_runs";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "radar_candidates_source_id_fkey";
+            columns: ["source_id"];
+            isOneToOne: false;
+            referencedRelation: "radar_sources";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
     };
     Views: { [_ in never]: never };
     Functions: {
@@ -406,6 +616,8 @@ export type Database = {
         | "resultats_publies"
         | "archive";
       verification_state: "a_verifier" | "verifie" | "incertain";
+      radar_candidate_status: "pending_review" | "imported" | "ignored";
+      radar_run_status: "running" | "success" | "error";
     };
     CompositeTypes: { [_ in never]: never };
   };
